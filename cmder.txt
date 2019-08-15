@@ -1,0 +1,26 @@
+;E:\install\Sublime Text 3;E:\install\8UFtp;E:\install\play;E:\install\qq\Bin;E:\install\WXWork;E:\install\WeChat;E:\install\FSCapture;E:\install\vmware;E:\install\Fastpdf;E:\install\Fastpdf;C:\Program Files\Internet Explorer;C:\Program Files (x86)\Google\Chrome\Application;E:\install\hf;E:\install\Microsoft VS Code;
+
+sub
+ftp
+mp4
+QQ
+vc
+qywx
+wx
+jt
+vmware
+pdfapp
+iexplore
+chrome
+firefox
+
+/e/object //项目
+/e/object/SVN/trunk //公司svn
+/e/exe //下载
+
+/e/object
+/e/object/SVN/trunk
+/e/exe
+/c/Users/Administrator/Documents/WXWork/1688850679383200/Cache/File/2019-07/
+
+winowrd

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+        }
+
+        body {
+            padding: 10px;
+        }
+
+        .KeyTatol {
+            width: 300px;
+            height: 180px;
+            border-radius: 5px;
+            border: 1px solid #e2e2e2;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .KeyTatol .KeyList {
+            width: 100%;
+            height: 100%;
+            padding: 5px;
+        }
+
+        .KeyTatol .KeyList .KeyListItem {
+            float: left;    
+            width: 33.33%;
+            height: 25%;
+            padding: 5px;
+
+        }
+
+        .KeyTatol .KeyList .KeyListItem span {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .KeyTatol .KeyList .KeyListItem span:active {
+            background: #ccc;
+            color: #fff;
+        }
+
+        .KeyTatol .KeyList .KeyListItem.aline {
+            width:66.66%;
+        }
+        .KeyTatol .KeyList .KeyListItem.close {
+            width:33.33%;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="Keyboard" value="" placeholder="请输入数字" />
+    <div id="KeyTatol" class="KeyTatol">
+        <ul class="KeyList">
+            <li class="KeyListItem"><span class='cli'>1</span></li>
+            <li class="KeyListItem"><span class='cli'>2</span></li>
+            <li class="KeyListItem"><span class='cli'>3</span></li>
+            <li class="KeyListItem"><span class='cli'>4</span></li>
+            <li class="KeyListItem"><span class='cli'>5</span></li>
+            <li class="KeyListItem"><span class='cli'>6</span></li>
+            <li class="KeyListItem"><span class='cli'>7</span></li>
+            <li class="KeyListItem"><span class='cli'>8</span></li>
+            <li class="KeyListItem"><span class='cli'>9</span></li>
+            <li class="KeyListItem aline"><span class='cli'>0</span></li>
+            <li class="KeyListItem close"><span class='closeBtn'>关闭</span></li>
+        </ul>
+    </div>
+    <script>
+        window.onload = function () {
+            var kbd = document.getElementById('Keyboard'); //获取输入框
+            setValue(kbd)
+
+        }
+        function setValue(obj){
+            var KTl = document.getElementById('KeyTatol'); //获取键盘对象
+            var btn = KTl.getElementsByClassName('cli'); //获取键盘的每一个按键
+            var btnclose = KTl.getElementsByClassName('closeBtn'); //获取键盘的关闭按钮
+            
+            btnclose[0].onclick = function(){
+                KTl.style.display = 'none';
+            }
+            obj.onfocus = function(){
+                KTl.style.display = 'block';
+            }
+            for (var i = 0; i < btn.length; i++) {
+                btn[i].onclick = (function(n){
+                    return function(){
+                        obj.value == ""?obj.value = btn[n].innerText:obj.value += btn[n].innerText
+                    }
+                })(i)
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+﻿Title cmd指令
+h1 系统指令
+msconfig  win系统配置命令
+ipconfig/ifconfig 查看win/linux系统ip
+msinfo32 查看系统信息
+dxdiag   检查directx信息，还可以查看系统基本配置信息
+regedit 查看注册表信息
+taskmgr 打开任务管理器
+control 控制面板
+mstsc 远程桌面连接
+mshrpubw 共享向导
+
+h2 软件指令
+osk 打开屏幕键盘
+calc 启用计算器	
+mspaint 画图板
+
+h3 win cmd运行中可以指令
+gpedit.msc  查看计算机配置和用户配置
