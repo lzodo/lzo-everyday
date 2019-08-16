@@ -1,4 +1,3 @@
-
 " Vundle {{{
   set nocompatible              " be iMproved, required
   filetype off                  " required
@@ -108,4 +107,3 @@ map <C-right> :vertical resize+5<CR>
 map nt :tabe<CR>
 map lt :-tabnext<CR>
 map rt :+tabnext<CR>
-
