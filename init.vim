@@ -1,4 +1,4 @@
-" -----------------------------------------------------------------------------
+" -----------y------------------------------------------------------------------
 " Vundle 插件安装 
 " -----------------------------------------------------------------------------
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -47,7 +47,7 @@ Plugin 'heavenshell/vim-jsdoc'
 
 " Plugin 'tomtom/tcomment_vim'
 " Plugin 'terryma/vim-multiple-cursors'
-
+Plugin 'Shougo/neocomplcache.vim'
  Plugin 'scrooloose/syntastic'
 " Plugin 'klen/python-mode'
 " Plugin 'xolox/vim-lua-ftplugin'
@@ -56,7 +56,7 @@ Plugin 'heavenshell/vim-jsdoc'
 " Plugin 'gregsexton/gitv'
 " Plugin 'tpope/vim-fugitive'
 " Plugin 'airblade/vim-gitgutter'
-" Plugin 'ryanoasis/vim-devicons' "图标字体设置有问题
+ Plugin 'ryanoasis/vim-devicons' "图标字体设置有问题
 " Plugin 'noahfrederick/vim-hemisu'
 " Plugin 'raymond-w-ko/vim-lua-indent'
 " Plugin 'zaki/zazen'
@@ -159,11 +159,17 @@ let g:NERDTreeIndicatorMapCustom = {
             \ }
 " }}}
 
+"========vim-nerdtree-syntax-highlight'
+"let g:NERDTreeSyntaxDisableDefaultExtensions = 1
+"let g:NERDTreeDisableExactMatchHighlight = 1
+"let g:NERDTreeDisablePatternMatchHighlight = 1
+"let g:NERDTreeSyntaxEnabledExtensions = ['html', 'js', 'css', 'vue', 'scss', 'less', 'ico'] " example<Paste>:
+
 " -----------------------------------------------------------------------------
 " 主题颜色配置
 " -----------------------------------------------------------------------------
 set guioptions=''
-set background=dark   " Background color
+set background=dark " Background color dark
 set t_Co=256
 set guifont=Source\ Code\ Pro\ Light:h19
 colorscheme molokai
@@ -223,8 +229,8 @@ let g:airline#extensions#tabline#enabled = 1 " 打开后，tabline和tmuxline都
 " -----------------------------------------------------------------------------
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
-nmap s <Plug>(easymotion-ovgrwin-f)
-nmap s <Plug>(easymotion-overwin-f2)
+nmap <leader>s <Plug>(easymotion-ovgrwin-f)
+nmap <leader>s <Plug>(easymotion-overwin-f2)
 
 let g:EasyMotion_smartcase = 1
 
@@ -244,7 +250,7 @@ augroup END
 
 
 " -----------------------------------------------------------------------------
-" ale
+" syntastic
 " -----------------------------------------------------------------------------
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -256,42 +262,13 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_verilog_checkers = ['verilator','iverilog']
-":SyntasticInfo 查看是否iu佩在完成之後可以用:SyntasticInfo查看是否有配置完成
-"设置pyflakes为默认的python语法检查工具
-let g:syntastic_python_checkers = ['pyflakes']
+"=================================
 " -----------------------------------------------------------------------------
 " ale
 " -----------------------------------------------------------------------------
 let b:ale_fixers = ['prettier', 'eslint']
 " Equivalent to the above.
 let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
-let g:ale_set_highlights = 0
-"自定义error和warning图标
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚡'
-"在vim自带的状态栏中整合ale
-let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
-"显示Linter名称,出错或警告等相关信息
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-"打开文件时不进行检查
-let g:ale_lint_on_enter = 0
-
-"普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
-nmap sp <Plug>(ale_previous_wrap)
-nmap sn <Plug>(ale_next_wrap)
-"<Leader>s触发/关闭语法检查
-nmap <Leader>s :ALEToggle<CR>
-"<Leader>d查看错误或警告的详细信息
-nmap <Leader>d :ALEDetail<CR>
-"使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
-let g:ale_linters = {
-\   'c++': ['clang'],
-\   'c': ['clang'],
-\   'python': ['pylint'],
-\   'javascript': ['prettier', 'eslint']
-\}
 " -----------------------------------------------------------------------------
 " ack.vim 
 " -----------------------------------------------------------------------------
@@ -300,6 +277,98 @@ map <F4> :Ack -i
 if executable('ag')
     let g:ackprg = 'ag --vimgrep'
 endif
+" -----------------------------------------------------------------------------
+" 'Shougo/neocomplcache.vim'
+" -----------------------------------------------------------------------------
+"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" Enable heavy features.
+" Use camel case completion.
+"let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+"let g:neocomplcache_enable_underbar_completion = 1
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplcache#smart_close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+
+" For cursor moving in insert mode(Not recommended)
+"inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
+"inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
+"inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
+"inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+" Or set this.
+"let g:neocomplcache_enable_cursor_hold_i = 1
+" Or set this.
+"let g:neocomplcache_enable_insert_char_pre = 1
+
+" AutoComplPop like behavior.
+"let g:neocomplcache_enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplcache_disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_force_omni_patterns')
+  let g:neocomplcache_force_omni_patterns = {}
+endif
+let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " -----------------------------------------------------------------------------
 " 其他
 " -----------------------------------------------------------------------------
