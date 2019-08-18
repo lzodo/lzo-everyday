@@ -1,4 +1,4 @@
-:" Vundle {{{
+" Vundle {{{
   set nocompatible              " be iMproved, required
   filetype off                  " required
   
@@ -6,21 +6,24 @@
   call vundle#begin()
 
   Plugin 'VundleVim/Vundle.vim'
-  Plugin 'scrooloose/nerdtree'
+ Plugin 'scrooloose/nerdtree'
+ Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plugin 'Xuyuanp/nerdtree-git-plugin'
   Plugin 'jistr/vim-nerdtree-tabs'
   Plugin 'tpope/vim-surround' "快速对一段文本加上扩号，引号等等
   Plugin 'easymotion/vim-easymotion'
- " Plugin 'Valloric/YouCompleteMe'
- " Plugin 'SirVer/ultisnips'
+  Plugin 'Valloric/YouCompleteMe'
+  Plugin 'SirVer/ultisnips'
+  Plugin 'marijnh/tern_for_vim'
  " Plugin 'honza/vim-snippets'
  " Plugin 'davidhalter/jedi-vim'
  " Plugin 'Raimondi/delimitMate'
  " 
+ " Plugin 'rking/ag.vim'
+  Plugin 'mileszs/ack.vim'
   Plugin 'ctrlpvim/ctrlp.vim' "查找缓存区的历史文件:CtrlP <c-f><c-b>切换页面
  " Plugin 'dyng/ctrlsf.vim'
   Plugin 'majutsushi/tagbar'
- " Plugin 'rking/ag.vim'
  " Plugin 'Lokaltog/vim-easymotion'
  " Plugin 'vim-scripts/matchit.zip'
 
@@ -41,9 +44,10 @@
  " Plugin 'tpope/vim-fugitive'
  " Plugin 'gregsexton/gitv'
  " Plugin 'airblade/vim-gitgutter'
+ Plugin 'mhinz/vim-startify'
  Plugin 'vim-airline/vim-airline-themes'
  Plugin 'bling/vim-airline'
- " Plugin 'ryanoasis/vim-devicons' "图标字体设置有问题
+ "Plugin 'ryanoasis/vim-devicons' "图标字体设置有问题
  " Plugin 'noahfrederick/vim-hemisu'
  " Plugin 'raymond-w-ko/vim-lua-indent'
   Plugin 'tomasr/molokai'
@@ -78,9 +82,45 @@
 "    vmap ) S)
 "    vmap > S>
 
+"==================NERDTree 插件
+
+""当NERDTree为剩下的唯一窗口时自动关闭
+"   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+""修改树的显示图标
+let NERDTreeAutoCenter=1
+" 显示行号
+let NERDTreeShowLineNumbers=1
+" 是否显示隐藏文件
+let NERDTreeShowHidden=1
+" 设置宽度
+let NERDTreeWinSize=25
+" 在终端启动vim时，共享NERDTree
+"let g:nerdtree_tabs_open_on_console_startup=1
+" 忽略一下文件的显示
+"let NERDTreeIgnore=['\.pyc','\~$','\.swp']
 " nerdtree
+    let g:NERDTreeDirArrowExpandable = '➢' 
+    let g:NERDTreeDirArrowCollapsible = '↪'
 	map <C-n> :NERDTreeToggle<CR>
 
+" NERDTree {{{
+  let g:NERDTreeDirArrows = 0
+" }}}
+
+" nerdtree-git-plugin symbols {{{
+  let g:NERDTreeIndicatorMapCustom = {
+      \ "Modified"  : "✹",
+      \ "Staged"    : "✚",
+      \ "Untracked" : "✭",
+      \ "Renamed"   : "➜",
+      \ "Unmerged"  : "═",
+      \ "Deleted"   : "✖",
+      \ "Dirty"     : "✗",
+      \ "Clean"     : "✔︎",
+      \ 'Ignored'   : '☒',
+      \ "Unknown"   : "?"
+      \ }
+" }}}
 " theme setting {{{
   set guioptions=''
   set background=dark   " Background color
@@ -182,3 +222,10 @@ augroup javascript_folding
     au!
     au FileType javascript setlocal foldmethod=syntax
 augroup END
+
+"============ack.vim 搜索
+
+map <F4> :Ack -i
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
