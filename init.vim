@@ -1,135 +1,77 @@
-" Vundle {{{
-  set nocompatible              " be iMproved, required
-  filetype off                  " required
-  
-  set rtp+=~/.vim/bundle/Vundle.vim
-  call vundle#begin()
+" -----------------------------------------------------------------------------
+" Vundle 插件安装 
+" -----------------------------------------------------------------------------
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-  Plugin 'VundleVim/Vundle.vim'
- Plugin 'scrooloose/nerdtree'
- Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-  Plugin 'Xuyuanp/nerdtree-git-plugin'
-  Plugin 'jistr/vim-nerdtree-tabs'
-  Plugin 'tpope/vim-surround' "快速对一段文本加上扩号，引号等等
-  Plugin 'easymotion/vim-easymotion'
-  Plugin 'Valloric/YouCompleteMe'
-  Plugin 'SirVer/ultisnips'
-  Plugin 'marijnh/tern_for_vim'
- " Plugin 'honza/vim-snippets'
- " Plugin 'davidhalter/jedi-vim'
- " Plugin 'Raimondi/delimitMate'
- " 
- " Plugin 'rking/ag.vim'
-  Plugin 'mileszs/ack.vim'
-  Plugin 'ctrlpvim/ctrlp.vim' "查找缓存区的历史文件:CtrlP <c-f><c-b>切换页面
- " Plugin 'dyng/ctrlsf.vim'
-  Plugin 'majutsushi/tagbar'
- " Plugin 'Lokaltog/vim-easymotion'
- " Plugin 'vim-scripts/matchit.zip'
+Plugin 'VundleVim/Vundle.vim'
+"---------美化插件
+Plugin 'yggdroot/indentline'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tomasr/molokai'
+Plugin 'mhinz/vim-startify'
+"---------查找插件
+Plugin 'ctrlpvim/ctrlp.vim' "查找缓存区的历史文件:CtrlP <c-f><c-b>切换页面
+"---------web前端相关插件
+Plugin 'posva/vim-vue'  
+Plugin 'pangloss/vim-javascript'
+Plugin 'ap/vim-css-color'
+Plugin 'mattn/emmet-vim'
+Plugin 'shmargum/vim-sass-colors'
+Plugin 'fleischie/vim-styled-components'
+Plugin 'leshill/vim-json'
+Plugin 'dense-analysis/ale' 
+"---------功能插件
+Plugin 'tpope/vim-surround' "快速对一段文本加上扩号，引号等等
+"---------其他插件
+Plugin 'easymotion/vim-easymotion'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'marijnh/tern_for_vim'
+" Plugin 'honza/vim-snippets'
+" Plugin 'davidhalter/jedi-vim'
+" Plugin 'Raimondi/delimitMate'
+" 
+" Plugin 'rking/ag.vim'
+Plugin 'mileszs/ack.vim'
+" Plugin 'dyng/ctrlsf.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'heavenshell/vim-jsdoc'
+" Plugin 'Lokaltog/vim-easymotion'
+" Plugin 'vim-scripts/matchit.zip'
 
- " Plugin 'tomtom/tcomment_vim'
- " Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'tomtom/tcomment_vim'
+" Plugin 'terryma/vim-multiple-cursors'
 
- " Plugin 'scrooloose/syntastic'
- " Plugin 'klen/python-mode'
- " Plugin 'xolox/vim-lua-ftplugin'
- " Plugin 'xolox/vim-misc'
- " Plugin 'fatih/vim-go'
-  Plugin 'posva/vim-vue'  
-  Plugin 'pangloss/vim-javascript'
-  Plugin 'ap/vim-css-color'
-  Plugin 'mattn/emmet-vim'
-  Plugin 'shmargum/vim-sass-colors'
-  Plugin 'fleischie/vim-styled-components'
- " Plugin 'tpope/vim-fugitive'
- " Plugin 'gregsexton/gitv'
- " Plugin 'airblade/vim-gitgutter'
- Plugin 'mhinz/vim-startify'
- Plugin 'vim-airline/vim-airline-themes'
- Plugin 'bling/vim-airline'
- "Plugin 'ryanoasis/vim-devicons' "图标字体设置有问题
- " Plugin 'noahfrederick/vim-hemisu'
- " Plugin 'raymond-w-ko/vim-lua-indent'
-  Plugin 'tomasr/molokai'
-  Plugin 'yggdroot/indentline'
- " Plugin 'zaki/zazen'
-  
-  " All of your Plugins must be added before the following line
-  call vundle#end()            " required
-  filetype plugin indent on    " required
-  " To ignore plugin indent changes, instead use:
-  "filetype plugin on
-  "
-  " Brief help
-  " :PluginList       - lists configured plugins
-  " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-  " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-  " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-  "
-  " see :h vundle for more details or wiki for FAQ
-  " Put your non-Plugin stuff after this line
-" }}}
+ Plugin 'scrooloose/syntastic'
+" Plugin 'klen/python-mode'
+" Plugin 'xolox/vim-lua-ftplugin'
+" Plugin 'xolox/vim-misc'
+" Plugin 'fatih/vim-go'
+" Plugin 'gregsexton/gitv'
+" Plugin 'tpope/vim-fugitive'
+" Plugin 'airblade/vim-gitgutter'
+" Plugin 'ryanoasis/vim-devicons' "图标字体设置有问题
+" Plugin 'noahfrederick/vim-hemisu'
+" Plugin 'raymond-w-ko/vim-lua-indent'
+" Plugin 'zaki/zazen'
 
-" vim-surround
-"    vmap " S"
-"    vmap ' S'
-"    vmap ` S`
-"    vmap [ S[
-"    vmap ( S(
-"    vmap { S{
-"    vmap } S}
-"    vmap ] S]
-"    vmap ) S)
-"    vmap > S>
+call vundle#end()            " required
+filetype plugin indent on    " required
 
-"==================NERDTree 插件
+" -----------------------------------------------------------------------------
+" 基本配置 
+" -----------------------------------------------------------------------------
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-""当NERDTree为剩下的唯一窗口时自动关闭
-"   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-""修改树的显示图标
-let NERDTreeAutoCenter=1
-" 显示行号
-let NERDTreeShowLineNumbers=1
-" 是否显示隐藏文件
-let NERDTreeShowHidden=1
-" 设置宽度
-let NERDTreeWinSize=25
-" 在终端启动vim时，共享NERDTree
-"let g:nerdtree_tabs_open_on_console_startup=1
-" 忽略一下文件的显示
-"let NERDTreeIgnore=['\.pyc','\~$','\.swp']
-" nerdtree
-    let g:NERDTreeDirArrowExpandable = '➢' 
-    let g:NERDTreeDirArrowCollapsible = '↪'
-	map <C-n> :NERDTreeToggle<CR>
-
-" NERDTree {{{
-  let g:NERDTreeDirArrows = 0
-" }}}
-
-" nerdtree-git-plugin symbols {{{
-  let g:NERDTreeIndicatorMapCustom = {
-      \ "Modified"  : "✹",
-      \ "Staged"    : "✚",
-      \ "Untracked" : "✭",
-      \ "Renamed"   : "➜",
-      \ "Unmerged"  : "═",
-      \ "Deleted"   : "✖",
-      \ "Dirty"     : "✗",
-      \ "Clean"     : "✔︎",
-      \ 'Ignored'   : '☒',
-      \ "Unknown"   : "?"
-      \ }
-" }}}
-" theme setting {{{
-  set guioptions=''
-  set background=dark   " Background color
-  set t_Co=256
-  set guifont=Source\ Code\ Pro\ Light:h19
-  colorscheme molokai
-" }}}
-
-
+"设置前缀<leader> 默认 \
+let mapleader = ","
 "设置退个键步长
 set backspace=2
 
@@ -155,12 +97,83 @@ set shiftwidth=4 "自动缩进所使用的空白数
 set autoindent "打开自动缩进
 set wildmenu "vim命令自动补全
 set showcmd     "显示输入命令 
+set showmode "左下角那一行的状态  
 "set mouse=a   "可以在buffer的任何地方使用鼠标
 set hlsearch              "显示高亮搜索 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif "将光标定位在文件关闭时的位置
-   
-"将f1设置为进入命令封号摸索
-map <F1> :
+
+" -----------------------------------------------------------------------------
+" vim-surround 插件 
+" cs"' //替换"为'  ds" //删除" ysiw" //光标所在单词添加"  yss" //整行添加"
+" cst" //将两边html标签为""  V模式给选择元素添加父级  S<p class="Parent">
+" -----------------------------------------------------------------------------
+    vmap " S"
+    vmap ' S'
+    vmap ` S`
+    vmap [ S[
+    vmap ( S(
+    vmap { S{
+    vmap } S}
+    vmap ] S]
+    vmap ) S)
+    vmap > S>
+" -----------------------------------------------------------------------------
+" NERDTree 插件
+" -----------------------------------------------------------------------------
+""当NERDTree为剩下的唯一窗口时自动关闭
+"   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+""修改树的显示图标
+let NERDTreeAutoCenter=1
+" 显示行号
+let NERDTreeShowLineNumbers=1
+" 是否显示隐藏文件
+let NERDTreeShowHidden=1
+" 设置宽度
+let NERDTreeWinSize=25
+" 在终端启动vim时，共享NERDTree
+"let g:nerdtree_tabs_open_on_console_startup=1
+" 忽略一下文件的显示
+"let NERDTreeIgnore=['\.pyc','\~$','\.swp']
+" nerdtree
+let g:NERDTreeDirArrowExpandable = '➢' 
+let g:NERDTreeDirArrowCollapsible = '↪'
+"map <C-n> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
+
+" NERDTree {{{
+let g:NERDTreeDirArrows = 0
+" }}}
+
+" nerdtree-git-plugin symbols {{{
+let g:NERDTreeIndicatorMapCustom = {
+            \ "Modified"  : "✹",
+            \ "Staged"    : "✚",
+            \ "Untracked" : "✭",
+            \ "Renamed"   : "➜",
+            \ "Unmerged"  : "═",
+            \ "Deleted"   : "✖",
+            \ "Dirty"     : "✗",
+            \ "Clean"     : "✔︎",
+            \ 'Ignored'   : '☒',
+            \ "Unknown"   : "?"
+            \ }
+" }}}
+
+" -----------------------------------------------------------------------------
+" 主题颜色配置
+" -----------------------------------------------------------------------------
+set guioptions=''
+set background=dark   " Background color
+set t_Co=256
+set guifont=Source\ Code\ Pro\ Light:h19
+colorscheme molokai
+
+
+
+
+" -----------------------------------------------------------------------------
+" 分屏配置 
+" -----------------------------------------------------------------------------
 
 "分别设置向右左上下分屏
 map fr :set splitright<CR>:vsplit<CR>
@@ -188,9 +201,11 @@ map rt :+tabnext<CR>
 map bc :w<CR>
 map tc :wq<CR>
 
-"===========================vim-airline 插件 设置
+" -----------------------------------------------------------------------------
+" vim-airline 美化状态栏
+" -----------------------------------------------------------------------------
 if !exists('g:airline_symbols')
-let g:airline_symbols = {}
+    let g:airline_symbols = {}
 endif
 let g:airline_left_sep = '░'
 let g:airline_left_alt_sep = '❯'
@@ -203,7 +218,9 @@ let g:airline_symbols.branch = '⎇'
 let g:airline#extensions#tabline#enabled = 1 " 打开后，tabline和tmuxline都可以得到增强
 
 
-"========================vim-easymotion 插件 定位到指定位置
+" -----------------------------------------------------------------------------
+" vim-easymotion 快速定位
+" -----------------------------------------------------------------------------
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
 nmap s <Plug>(easymotion-ovgrwin-f)
@@ -214,7 +231,9 @@ let g:EasyMotion_smartcase = 1
 map <C-j> <Plug>(easymotion-j)
 map <C-k> <Plug>(easymotion-k)
 
-"============vim-javascript
+" -----------------------------------------------------------------------------
+" vim-javascript
+" -----------------------------------------------------------------------------
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
@@ -223,9 +242,74 @@ augroup javascript_folding
     au FileType javascript setlocal foldmethod=syntax
 augroup END
 
-"============ack.vim 搜索
+
+" -----------------------------------------------------------------------------
+" ale
+" -----------------------------------------------------------------------------
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_verilog_checkers = ['verilator','iverilog']
+":SyntasticInfo 查看是否iu佩在完成之後可以用:SyntasticInfo查看是否有配置完成
+"设置pyflakes为默认的python语法检查工具
+let g:syntastic_python_checkers = ['pyflakes']
+" -----------------------------------------------------------------------------
+" ale
+" -----------------------------------------------------------------------------
+let b:ale_fixers = ['prettier', 'eslint']
+" Equivalent to the above.
+let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
+let g:ale_set_highlights = 0
+"自定义error和warning图标
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚡'
+"在vim自带的状态栏中整合ale
+let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
+"显示Linter名称,出错或警告等相关信息
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+"打开文件时不进行检查
+let g:ale_lint_on_enter = 0
+
+"普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
+"<Leader>s触发/关闭语法检查
+nmap <Leader>s :ALEToggle<CR>
+"<Leader>d查看错误或警告的详细信息
+nmap <Leader>d :ALEDetail<CR>
+"使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
+let g:ale_linters = {
+\   'c++': ['clang'],
+\   'c': ['clang'],
+\   'python': ['pylint'],
+\   'javascript': ['prettier', 'eslint']
+\}
+" -----------------------------------------------------------------------------
+" ack.vim 
+" -----------------------------------------------------------------------------
 
 map <F4> :Ack -i
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+    let g:ackprg = 'ag --vimgrep'
 endif
+" -----------------------------------------------------------------------------
+" 其他
+" -----------------------------------------------------------------------------
+map <leader>l :
+map <leader>sx :source ~/.vimrc<cr>
+map <leader>nsx :source ~/.config/nvim/init.vim<cr>
+map <leader>ee :e ~/.config/nvim/init.vim<cr>
+map <leader>bs :e ~/docs<cr>
+map <leader>pl :PluginInstall<cr>
+map <leader>bs :e ~/docs<cr>
+map <leader>bs :e ~/docs<cr>
+map <C-HOME> :m-2<CR>
+map <C-END> :m+1<CR>
