@@ -78,7 +78,8 @@ set backspace=2
 "代码高亮 off 取消高亮
 syntax on
 "设置行号 nonu 取消行号
-:set number 
+:set number
+:set ignorecase "查找时忽略大小写  加上no取反
 "tab步长
 set tabstop=2
 "设置左右移动步长
@@ -99,7 +100,8 @@ set wildmenu "vim命令自动补全
 set showcmd     "显示输入命令 
 set showmode "左下角那一行的状态  
 "set mouse=a   "可以在buffer的任何地方使用鼠标
-set hlsearch              "显示高亮搜索 
+"set hlsearch              "显示高亮搜索 
+:nohlsearch "高亮显示但前所在的搜索关键字
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif "将光标定位在文件关闭时的位置
 
 " -----------------------------------------------------------------------------
