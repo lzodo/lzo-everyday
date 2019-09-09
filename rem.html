@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .box{
+        box-sizing:unset;
+        background: #f00;
+        height: 100px;
+        width:100px;
+        padding: 100px;
+    }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+
+</body>
+<script>
+(function () {
+    var html = document.documentElement;
+
+    function onWindowResize() {
+        html.style.fontSize = html.getBoundingClientRect().width / 20 + 'px';
+    }
+
+    window.addEventListener('resize', onWindowResize);
+    onWindowResize();
+})();
+</script>
+</html>
