@@ -28,14 +28,35 @@
 //    },
 // }
 
-let str = 'this-is-a-teststr';
-function tuofeng(str){
-    return str.split('-').map((item,index)=>{
-       if(index == 0){
-          return item;
-       }else{
-          return item.charAt(0).toUpperCase() + item.substr(1,item.length-1)
-       }
-    }).join('')
+function addEvent(node, type, handler) {
+   if(!node) return false;
+   if(node.addEventListener) {
+       node.addEventListener(type, handler, false);
+       return true;
+   }
+   else if(node.attachEvent) {
+       node['e' + type + handler] = handler;
+       node[type + handler] = function() {
+           node['e' + type + handler](window.event);
+       };
+       node.attachEvent('on' + type, node[type + handler]);
+       return true;
+   }
+   return false;
 }
-console.log(tuofeng(str))
+
+function removeEvent(node, type, handler) {
+   if(!node) return false;
+   if(node.removeEventListener) {
+       node.removeEventListener(type, handler, false);
+       return true;
+   }
+   else if(node.detachEvent) {
+       node.detachEvent('on' + type, node[type + handler]);
+       node.[type + handler] = null;
+   }
+   return false;
+}
+
+e.stopPropagation(); //阻止事件冒泡
+e.preventDefault(); //阻止默认事件

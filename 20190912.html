@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+// function text(...args){
+//     console.log(args)
+// }
+// let obj = {};
+// window.onclick = text.bind(obj,100,2000);
+
+let obj = {};
+
+let test = function(...arg){
+  console.log(this); // {}
+  console.log(arg) // [30,20,10]
+}.bind(obj,30)
+
+let test2 = function(...arg){
+  console.log(this); // {}
+  console.log(arg); // [10, 20, 30]
+}
+
+test(10,20); 
+test2.bind(obj,10,20)(30); 
+
+// =================================================
+
+(function(){
+    function mybind(){
+
+    }
+    Function.prototype.mybind = mybind;
+})()
+
+
+
+// 正则解析url
+let url = 'https://www.baidu.com/s?wd=search&rsv_spt=1&rsv_iqid=0xee32af96000296f7&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_dl=tb&rsv_sug3=3&rsv_sug1=3&rsv_sug7=100&rsv_sug2=0&inputT=1404&rsv_sug4=1404'
+function queryurlparame(url){
+    let reg = /([^?&=]+)=([^?&=]+)/g;
+    let obj = {};
+    url.replace(reg,function(){
+        obj[arguments[1]]=arguments[2];
+    })
+    return obj;
+}
+console.log(queryurlparame(url));
+
+// ======================翻转输出int
+function fun(num){
+    let num1 = num / 10;
+    let num2 = num % 10;
+    if(num1<1){
+        return num;
+    }else{
+        num1 = Math.floor(num1)
+        return `${num2}${fun(num1)}`
+    }
+}
+var a = fun(12345)
+console.log(a)
+console.log(typeof a)
+
+</script>
+
+</html>
+

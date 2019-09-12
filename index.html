@@ -5,6 +5,34 @@
 	<title>Document</title>
 </head>
 <body>
-	12346
+	
 </body>
+<script>
+
+Array.prototype.push = function(val){
+	//因为最后一个索引是this.length - 1;在加一个就是length了
+	this[this.length] = val;
+	//由于数组特性,执行完之后this.length会在原来的基础上自动加1
+	return this.length; 
+}
+
+let arr2 = [8];
+console.log(arr2.pusha(3)); //与原生push一样
+console.log(arr2); //结果也与原生一样
+
+// 计算以下结果
+let obj = {
+	2:3,
+	3:4,
+	length:2,
+	push:Array.prototype.push
+
+};
+
+obj.push(1);
+// 因为this[this.length] = val; => obj.length = 1 => obj.2 = 1 => this.length自增1
+obj.push(2);
+// 因为this[this.length] = val; => obj.length = 2 => obj.3 = 2 => this.length自增1
+console.log(obj) //?
+</script>
 </html>
