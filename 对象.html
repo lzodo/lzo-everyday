@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 创建
+    // var obj = {};
+    // var obj = Object.create( null );
+    var obj = new Object();
+    // 读写键值对
+    //1、点
+    obj.name = 'newname'; console.log(obj.name);
+    obj.obsObj = {
+        'a':1,
+        'b':2
+    },
+    obj.obsObjHasarr={
+        'c':3,
+        'd':4,
+        'array':[5,6,7]
+    }
+    //2、方括号
+    obj['age'] = '100'; console.log(obj['age']);
+    //3、set --> defineProperty get --> getOwnPropertyDescriptor   配置属性默认false
+    //   value writable 不能与访问器(getter/setter)同时设置
+    var bValue;
+    Object.defineProperty(obj, "charts", {
+        // value: "1000",
+        // writable: true, //是否可修改
+        enumerable: true, //是否可枚举(循环遍历不会出现该属性)
+        configurable: true, //是否可配置(如果是false 这个属性则不能删除 delete obj.charts返回false)
+        get: function () { //获取该属性是触发
+            // console.log('获取了')
+            return bValue;
+        },
+        set: function (newValue) { //修改该属性是触发
+            // console.log('修改了')
+            bValue = newValue;
+        },
+    });
+    obj.charts = 38; //如果用访问器(getter/setter)方式需要外面定义值
+
+    for (let i in obj) {
+        console.log(obj[i]);
+    }
+    console.log(Object.getOwnPropertyDescriptor(obj, 'charts')) //获取属性及配置属性
+    // 4、defineProperties(defineProperty 同时设置多个版本)
+    Object.defineProperties(obj, {
+        "charts2": {
+            value: "charts2",
+            writable: true,
+            enumerable: true,
+        },
+        "charts3": {
+            value: "charts3",
+            writable: true,
+            enumerable: true,
+        }
+    });
+    console.log(obj);
+    console.log(Object.getOwnPropertyDescriptor(obj, 'charts2')) //获取属性及配置属性
+    //继承
+    var obj2 = Object.create(obj); //已经继承了但是console出来是看不到的
+    console.log(obj2.name)
+    console.log(obj)
+    //判断对象属性 in、hasOwnProperty()、.[]
+    console.log('age' in obj);
+    console.log(obj.hasOwnProperty('age'));
+    console.log(obj.age);
+
+    //遍历对象
+    'for ... in' // 遍历对象自身的和继承的可枚举属性(不含Symbol属性)
+    Object.keys(obj) // 返回一个数组,包括对象自身的(不含继承的)所有可枚举属性(不含Symbol属性)
+    Object.getOwnPropertyNames(obj)  // 返回一个数组,包括对象自身的所有可枚举和不可枚举属性(不含Symbol属性)
+    Object.getOwnPropertySymbols(obj)  // 返回一个数组,包含对象自身的所有Symbol属性
+    Reflect.ownKeys(obj)  // 返回一个数组,包含对象自身的所有(不枚举、可枚举和Symbol)属性
+
+    console.log('===============================')
+    var depthEact = function(objs) {
+        if (!objs) return;
+        for (i in objs) {
+            var childs = objs[i];
+            if (typeof childs === 'object') {
+                depthEact(childs);
+            }else{
+                if(childs == 'charts2'){
+                    break;
+                }
+                console.log(i +'=='+childs)
+            }
+        }
+    };
+    depthEact(obj);
+
+
+</script>
+
+</html>

@@ -13,7 +13,7 @@
     // ===========================构造函数
     function Mycase(name){
         this.name = name;
-        this.sta = function(sta){
+        this.sta = function(sta){ //每次new都会被重新定义 这个不好
             console.log(sta)
         }
     }
