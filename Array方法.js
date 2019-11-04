@@ -11,7 +11,7 @@ console.log(arr.slice(2, 4)) //拷贝子数组 （起始位置,结束位置) 包
 console.log(arr.every(item=>item != 'x')) //所有元素满足返回true,否则返回false
 console.log(arr.some(item=>item == 'a')) //只要有一个满足返回true,否则返回false
 console.log(arr.includes('a')) //判断数中是否包含给定的值
-console.log(arr.flat(arr)) //数组扁平化(只能展开一层)
+console.log(arr.flat()) //数组扁平化(默认展开一层,Infinity展开全部,还能用数字表示)
 console.log(arr.join('_')) //装字符串(如果有子数组用默认逗号相连)
 console.log('======改变原数组======')
 console.log(arr.splice(1,2,'c')) //替换原数组 (位置索引,删除长度,插入元素)
