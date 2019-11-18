@@ -9,7 +9,12 @@
 </head>
 
 <body>
+    <div>
+        Some text
+        <span>More text</span>
+        </div>
 
+        <P>Some <EM>emphasized</EM> text</P>
 </body>
 <script>
     // 创建
@@ -103,6 +108,102 @@
 
     //方法
     console.log(Object.is(-0,+0))
+
+    //判断对象自身是否存在某个属性,自身属性返回true,如果prop不存在或是存在于原型链上的属性返回false
+    obj.hasOwnProperty('prop')
+    // const foo = {
+    //     hasOwnProperty: function() {
+    //         return false;
+    //     },
+    //     bar: '这是一个坑，可能永远返回false'
+    // };
+    // const hasBar = foo.hasOwnProperty('bar'); 
+    // console.log(hasBar);// 始终返回 false
+
+    // // 如果担心这种情况，可以直接使用原型链上真正的 hasOwnProperty 方法
+    // const a = {}.hasOwnProperty.call(foo, 'bar'); // true
+    // console.log(a);
+    // // 也可以使用 Object 原型上的 hasOwnProperty 属性
+    // const b = Object.prototype.hasOwnProperty.call(foo, 'bar'); // true
+    // console.log(b);
+
+
+    // ==================浅克隆
+    // Object.assign()实现浅克隆
+    // 复制对象第一层属性,如果第一层中某个属性的值还是一个对象,这边复制的还是属于引用地址,新对象会影响老对象
+    // 被克隆对象
+    const oldObj = {
+        a: 1,
+        b: [ 'e', 'f', 'g' ],
+        c: { h: { i: 2 } },
+        d: function(){
+            console.log('fun')
+        },
+    };
+
+    function shallowClone(o) {
+        const obj = {};
+        for ( let i in o) {
+            obj[i] = o[i];
+        }
+        return obj;
+    }
+
+    const newObj = shallowClone(oldObj);
+    console.log(newObj.c.h, oldObj.c.h); // { i: 2 } { i: 2 }
+    console.log(oldObj.c.h === newObj.c.h); // true
+    // ==================深克隆
+    /**
+        完全克隆老对象,与克隆出的对象互不影响
+        JSON.parse方式
+        1.他无法实现对函数 、RegExp等特殊对象的克隆
+        2.会抛弃对象的constructor,所有的构造函数会指向Object
+        3.对象有循环引用,会报错
+    */
+    const newObj2 = JSON.parse(JSON.stringify(oldObj));
+    console.log(newObj2);
+    console.log(oldObj);
+    console.log(newObj2.b == oldObj.b);
+
+    // 构造函数
+    function person(pname) {
+        this.name = pname;
+    }
+
+    const Messi = new person('Messi');
+
+    // 函数
+    function say() {
+        console.log('hi');
+    };
+
+    const oldObj2 = {
+        a: say,
+        b: new Array(1),
+        c: new RegExp('ab+c', 'i'),
+        d: Messi
+    };
+
+    const newObj3 = JSON.parse(JSON.stringify(oldObj2));
+    // 无法复制函数
+    console.log(newObj3.a, oldObj2.a); // undefined [Function: say]
+    // 稀疏数组复制错误
+    console.log(newObj3.b[0], oldObj2.b[0]); // null undefined
+    // 无法复制正则对象
+    console.log(newObj3.c, oldObj2.c); // {} /ab+c/i
+    // 构造函数指向错误
+    console.log(newObj3.d.constructor, oldObj2.d.constructor); // [Function: Object] [Function: person]
+
+
+    // stringify 序列化对象的循环引用会抛出错误
+    const oldObj4 = {};
+    oldObj4.a = oldObj4;
+    console.log(oldObj4)
+    //const newObj4 = JSON.parse(JSON.stringify(oldObj4));
+
+    // 手动封装深度克隆  Object_深拷贝.html
+    
+
 
 
 </script>
