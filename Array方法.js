@@ -32,3 +32,10 @@ arr.values() //值
 arr.entries() //键值对
 
 '10000000000'.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+
+/*
+p=pro_e=cmd_w=2_com=4_v=02050001FF00DDC9_rep=2
+
+p=pro_e=cmd_w=2_com=4_v=0205000100009C39_rep=2
+p=pro_e=cmd_w=2_com=4_v=0205000100009C39_rep=2
+*/

@@ -11,6 +11,9 @@
 * absolute的包含块由它最近的position 属性为absolute、relative或者fixed的祖先元素创建
 
 #### 控制框（Controlling Box）
+##### 块框
+
+##### 行框
 #### BFC（Block Formatting Context）
 #### IFC（Inline Formatting Context）
 #### 定位体系
