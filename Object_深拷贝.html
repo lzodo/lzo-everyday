@@ -15,13 +15,50 @@
     // function isArray(arr){
     //     return Object.prototype.toString.call(arr) === "[object Array]" 
     // }
-
-
+    
+    const isType = (obj, type) => {
+        if (typeof obj !== 'object') return false;
+        const typeString = Object.prototype.toString.call(obj);
+        let flag;
+        switch (type) {
+            case 'Array':
+                flag = typeString === '[object Array]';
+                break;
+            case 'Date':
+                flag = typeString === '[object Date]';
+                break;
+            case 'RegExp':
+                flag = typeString === '[object RegExp]';
+                break;
+            default:
+                flag = false;
+        }
+        return flag;
+    };
+    const getRegExp = re => {
+        var flags = '';
+        if (re.global) flags += 'g';
+        if (re.ignoreCase) flags += 'i';
+        if (re.multiline) flags += 'm';
+        return flags;
+    };
     function deepclone(obj,map = new WeakMap()){ //Mpa 的 key 是强引用 WeakMap 是弱应用,当下一次垃圾回收机制执行时，这块内存就会被释放掉。
-        if(typeof obj != 'object' && typeof obj != 'function'){
+        if(obj==null || typeof obj != 'object' && typeof obj != 'function'){
             return obj;
         }
-        var o = Array.isArray(obj)?[]:{};
+        // var o = Array.isArray(obj)?[]:{};
+        let o;
+
+        if(isType(obj,'Array')){
+            o = [];
+        }else if(isType(obj,'RegExp')){
+            // 对正则对象做特殊处理
+            o = new RegExp(obj.source, getRegExp(obj)); //source属性可以返回匹配模式字符串(不包括gim和定界符)
+        }else if(isType(obj,'Date')){
+            o = new Date(obj.getTime())
+        }else{
+            o = {};
+        }
 
         /*
         处理循环引用
@@ -42,9 +79,6 @@
         }
         return o;
     }
-
-    
-
     
     var  oldobj = {
         a:1,
@@ -53,6 +87,8 @@
         d:function(){},
         e:new Array(1).fill('1'),
         f:new RegExp('ab+c', 'i'), //xx
+        g:null,
+        i:new Date(50)
     } 
     oldobj.h = oldobj;
     var newobj = deepclone(oldobj);
