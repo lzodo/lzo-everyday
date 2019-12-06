@@ -127,5 +127,5 @@ async function doIt2() {
     console.log('后执行')
     console.log(`result is ${result}`);
 }
-doIt2();
+//doIt2();
 
