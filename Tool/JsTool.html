@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tool</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+	'use strict' 
+	/*
+	 * 功能:获取数组中的最大数字
+	 * 描述:sort 返回值大于0 则交换元素
+	 */
+	const maxItemOfArray = (arr) => arr.sort((a, b) => b - a)[0];
+    let maxItem = maxItemOfArray([3, 5, 12, 5]); //12
+
+    /*
+	 * 功能:检查数组的所有项是否相等
+	 * 描述:方法用于检测数组所有元素是否都符合指定条件 ,一个不满足，则返回 false
+	 */
+	const areAllEqual = array => array.every(item => item === array[0]);
+	let check1 = areAllEqual([5 ,3, 5]); // false
+
+	/*
+	 * 功能:求给定数字的平均值
+	 * 描述:...args 收集所有参数类数组, 收集剩余参数 show(a,b,...args)
+	 *      args.reduce((a初始值, 或者计算结束后的返回值, b当前元素) => a + b, 传递给函数的初始值)
+	 */
+	const averageOf = (...args) => args.reduce((a, b) => a + b, 0) / args.length;
+    let average = averageOf(5, 2, 4, 7); // 4.5
+    
+
+    /*
+	 * 功能:反转一个字符串
+	 * 描述: [...str] 字符串展开开为数组
+	 */
+ 	const reverseString = str => [...str].reverse().join("");
+    let a = reverseString('Have a nice day!'); // !yad ecin a eva
+
+    /*
+	 * 功能:在字符串中查找给定的单词，并替换为另一个单词
+	 */
+	const findAndReplace = (string, old, newchar) => string.split(old).join(newchar);
+    let result = findAndReplace('I like banana', 'a', 'g'); // I like apple
+
+    /*
+	 * 功能:将RGB模式下的颜色转换为十六进制
+	 * 描述:padStart() 不足六位的值 用0在前面填充到六位
+	 * (r << 16) + (g << 8) + b  ???
+	 */
+    const RGBToHex = (r, g, b) => ((r << 16) + (g << 8) + b).toString(16).padStart(6, "0");
+    let hex = RGBToHex(0, 255, 255); // ffffff
+
+	 /**
+     * 功能:随机生成颜色
+     *
+     */
+    const randomColor = () => {
+    	return '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).slice(-6);
+    }
+    console.log(randomColor())
+
+     /**
+     * 功能:生成指定范围随机数
+     * 
+     */
+    const randomNum = (min, max) => {
+      return Math.floor(min + Math.random() * (max - min));
+    }
+    console.log(randomNum(5,10))
+
+
+    /*
+	 * 功能:从数组中删除false值，包括false，undefined，NaN，empty
+	 * 描述:arr.filter 返回检测通过(返回值为true)的元素
+	 */
+    const removeFalseValues = arr => arr.filter(item => item);
+    let arrfil = removeFalseValues([3, 4, false, "", 5, true, undefined, NaN, ""]); // [3, 4, 5, true]
+
+
+	/*
+	 * 功能:从数组中删除重复的项
+	 * 描述:Set 结构成员不会添加重复的值
+	 */
+    const removeDuplicatedValues = array => [...new Set(array)];
+    let arr = removeDuplicatedValues([5, 3, 2, 5, 6, 1, 1, 6]); // [5, 3, 2, 6, 1]
+
+    /*
+	 * 功能:返回时间
+	 * 描述:date.toTimeString   11:19:44 GMT+0800 (中国标准时间)
+	    	console.log(new Date(1597894083000).toLocaleString())      // 2020/8/20 上午11:26:29
+	   	    console.log(new Date().toLocaleTimeString())  
+	    	console.log(new Date(1597894083000).toLocaleDateString())  // 2020/8/20
+	 */
+    const getTimeFromDate = date => date.toTimeString().slice(0, 8);
+    let time1 = getTimeFromDate(new Date()); // 09:46:08
+
+
+	/*
+	 * 功能:将字符串中所有单词的第一个字母大写
+	 * 描述: \b 匹配单词开头或结尾 ，/\b[a-z0-9]/g 匹配单词-> 取一位 ->所有单词
+	 */
+    const capitalizeAllWords = str => str.replace(/\b[a-z]/g, char => char.toUpperCase());
+    let claw = capitalizeAllWords("i love reading book"); // I Love Reading Book
+
+
+    /*
+	 * 功能:验证数字是否有效
+	 * 描述: parseFloat(n) 第一个字符不能被转换为数字，那么会返回 NaN,否则返回第一个数值
+	 		isFinite(n) number 是 NaN（非数字），或者是正、负无穷大的数，则返回 false。
+	 		Number(n) 将对象转数字
+	 */
+
+    const isValidNumber = n => !isNaN(parseFloat(n)) && isFinite(n) && Number(n) === n;
+	let ivn = isValidNumber(10); // true
+	let ivn2 = isValidNumber("a"); // false
+
+	/*
+	 * 功能:快速向上滚动至顶部
+	 * 描述: scrollTo(x,y) 通过横纵坐标位置
+	 */
+	const scrollToTop = () => {
+	  const t = document.documentElement.scrollTop || document.body.scrollTop; //获取滚动高度
+	  console.log(t)
+	  if (t > 0) {
+	    window.requestAnimationFrame(scrollToTop); //浏览器自动判断动画完成之后执行回调
+	    window.scrollTo(0, t - t / 8);
+	  }
+	};
+	scrollToTop();
+
+	/*
+	 * 功能:字符串转换为单词数组
+	 * 描述:split(regexp) 只要匹配的字符都当做切割符号 
+	        + 与 filter(item => item) 作用一致
+	 */
+	const toWords = (string, pattern = /[^a-zA-Z-]+/) => string.split(pattern).filter(item => item);
+    let words = toWords('I 5 5 wa5nt to be55 come a great false nan programm5er'); 
+
+
+	/*
+	 * 功能:字符串是否是有效的JSON
+	 */
+    const isValidJSON = str => {
+		if (typeof str == 'string') {
+	        try {
+	            var obj = JSON.parse(str); // JSON.parse(str) 会通过 123 "123"
+	            if(Object.prototype.toString.call(obj) == '[object object]'){
+	              return true;
+	            }else{
+	              return false;
+	            }
+	        } catch(e) {
+	            return false;
+	        }
+	    }
+	};
+	let ivjson1 = isValidJSON('1'); // false
+	let ivjson2 = isValidJSON('{"title": "javascript", "price": 14}'); // true
+	let ivjson3 = isValidJSON('{"title": "javascript", "price": 14, subtitle}'); // false
+
+	/*
+	 * 功能:弧度转换成角度
+	 */
+	const radianToDegree = radian => (radian * 180.0) / Math.PI;
+	let degree = radianToDegree(2.3); // 131.78
+
+	/*
+	* 功能:判断对象所有属性是否都为空
+	*/
+	const objectKeyIsEmpty = (obj) => {
+	    let empty = false;
+	    for (let key in obj) {
+	        if (obj[key] != null || obj[key] == '') {
+	            empty = true;
+	        } else {
+	            empty = false;
+	            break;
+	        }
+	    }
+	    return empty;
+	}
+	// objectKeyIsEmpty({'A':'','B':'',"C":''})
+
+
+	/*
+	* 功能:时间解析
+	*/
+	const transformTime = (timestamp,type,char='-') => {
+		if(Number(timestamp)||!timestamp){
+	        var time;
+			if(!timestamp){
+				time = new Date();
+			}else{
+				time = new Date(timestamp);
+			}
+	        var y = time.getFullYear();
+	        var M = (time.getMonth() + 1).toString().padStart(2, "0");
+	        var D = time.getDate().toString().padStart(2, "0");
+	        var h = time.getHours().toString().padStart(2, "0");
+	        var m = time.getMinutes().toString().padStart(2, "0");
+	        var s = time.getSeconds().toString().padStart(2, "0");
+
+	        switch(type){
+	        	case 'date':
+		        	return y + char + M + char + D;
+		        	break;
+	        	case 'time':
+		        	return h + ':' + m + ':' + s;
+		        	break;
+		       	case 'datetime':
+		        	return y + char + M + char + D + ' ' + h + ':' + m + ':' + s;
+		        	break;
+		        default:
+		        	return y + char + M + char + D + ' ' + h + ':' + m + ':' + s;
+		        	break;
+	        }
+		}else{
+			console.log('请输入number类型时间戳')
+		}
+	}
+	transformTime(1580205900000,'date')
+
+	/*
+	* 功能:删除数组中指定元素
+	*/
+	const removeAaaryObj = (arr, el) =>{
+    	let array = [];
+
+    	arr.map((item,i) => {
+    		if(item != el){
+    			array.push(item);
+    		}
+    	})
+    	return array;
+	}
+	let arrayre = [1,2,3,4,4,'ab','ab','cad'];
+	arrayre.filter(item => item != 'cad')
+	removeAaaryObj(arrayre,'ab')
+
+	/*
+	* 功能:防抖
+	* 描述:触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间
+    *      每次触发事件时都取消之前的延时调用方法
+	*/
+    const debounce = (fn,delay = 500) => {
+        let timeout = null; // 创建一个标记用来存放定时器的返回值
+        return function() {
+            clearTimeout(timeout); // 每当用户输入的时候把前一个 setTimeout clear 掉
+            timeout = setTimeout(() => { // 然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数
+                fn()
+            }, delay);
+        };
+    }
+    function sayHi() {
+        console.log('防抖成功');
+    }
+
+    var inp = document.createElement('input');
+    inp.addEventListener('input', debounce(sayHi)); // 防抖
+    document.body.appendChild(inp);
+
+    /*
+     * （2）节流
+     *  高频事件触发，但在n秒内只会执行一次，所以节流会稀释函数的执行频率
+     *  每次触发事件时都判断当前是否有等待执行的延时函数
+     */
+    const throttle = (fn)=> {
+        let canRun = true; // 通过闭包保存一个标记
+        return function() {
+            if (!canRun) return; // 在函数开头判断标记是否为true，不为true则return
+            canRun = false; // 立即设置为false
+            setTimeout(() => { // 将外部传入的函数的执行放在setTimeout中
+                fn.apply(this, arguments);
+                // 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是false，在开头被return掉
+                canRun = true;
+            }, 500);
+        };
+    }
+
+    function sayHi2(e) {
+        console.log(e.target.innerWidth, e.target.innerHeight);
+    }
+    window.addEventListener('resize', throttle(sayHi2));
+
+
+    /*
+    *功能:深拷贝
+    *
+    **/
+    const deepClone = obj => {
+	    if (!obj && typeof obj !== 'object') {
+	        return;
+	    }
+	    var newObj = obj.constructor === Array ? [] : {};
+	    for (var key in obj) {
+	        if (obj[key]) {
+		        if (obj[key] && typeof obj[key] === 'object') {
+		            newObj[key] = obj[key].constructor === Array ? [] : {};
+		            //递归
+		            newObj[key] = deepClone(obj[key]);
+		        } else {
+		            newObj[key] = obj[key];
+		        }
+	        }
+	    }
+	    return newObj;
+    }
+
+    let deepCloneObj = {
+    	a:'1',
+    	b:{
+    		c:'2',
+    		d:['1',2,{e:'5'}]
+    	}
+    }
+    let newobj = deepClone(deepCloneObj);
+    newobj.b.c = 'change'
+    console.log(newobj)
+    console.log(deepCloneObj);
+
+
+
+
+
+
+
+  
+</script>
+</html>
