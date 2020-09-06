@@ -147,7 +147,7 @@
 		if (typeof str == 'string') {
 	        try {
 	            var obj = JSON.parse(str); // JSON.parse(str) 会通过 123 "123"
-	            if(Object.prototype.toString.call(obj) == '[object object]'){
+	            if(Object.prototype.toString.call(obj) == '[object Object]'){
 	              return true;
 	            }else{
 	              return false;
