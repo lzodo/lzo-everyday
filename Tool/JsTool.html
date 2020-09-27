@@ -321,6 +321,89 @@
     console.log(newobj)
     console.log(deepCloneObj);
 
+    /*
+    *功能:数组扁平化
+    *
+    **/
+    const arrayFlat = (arr) =>{
+    	let newval = [];
+
+    	//直接flat
+    	//newval = arr.flat(Infinity)
+
+    	/*
+    	* 正则一
+        * 数值类型会变成字符串,字符串会成四引号
+        * 将数组转字符串 --> 去除左右中括号[] --> 再将字符串切割成数组
+        * 
+    	*/
+    	//newval = JSON.stringify(arr).replace(/\[|\]/g, '').split(',')
+
+    	/*
+    	* 正则二
+        * 将数组转字符串 --> 去除左右中括号[] --> 再用JSON.parse还原
+        * 
+    	*/
+    	//newval =  JSON.parse('[' + JSON.stringify(arr).replace(/\[|\]/g, '') + ']');
+
+
+    	// reduce 原理也是递归
+		// const flatten = arr => {
+		//     return arr.reduce((pre, cur) => {
+		//     	//如果cur当前元素是数组递归一下返回将内部扁平化好concat上,否则直接concat上
+		//    		return pre.concat(Array.isArray(cur) ? flatten(cur) : cur);
+		//     }, []) //默认pre 第一个
+		// }
+		// newval = flatten(arr)
+
+		//直接递归
+		newval = [];
+
+		let fn = (arr)=>{
+		    for (let i = 0; i < arr.length; i++) {
+			    if (Array.isArray(arr[i])) {
+			        fn(arr[i]);
+			    } else {
+			        newval.push(arr[i]);
+			    }
+		    }
+		}
+
+		fn(arr)
+	
+
+
+    	return newval
+
+    }
+    console.log(arrayFlat([1, [2, ["3", ['string',4, 5]]], 6]))
+
+    /*
+    *功能:数组去重
+    *
+    **/
+    const removeRepet = (arr)=>{
+    	let newval = [];
+    	// Set方式
+    	// newval =  Array.from(new Set(arr));
+
+    	// Filter过滤方式
+    	newval = arr.filter((item, index) => {
+		    //arr.indexOf(item) 只会找到arr中第一个符合条件的下标，
+		    return arr.indexOf(item) === index; 
+		});
+
+		/*
+        * 或新建数组 变量原数组如果新数组不存在某一个则添加
+        * 条件: res.indexOf(i) === -1 || !res.includes(i) || !map.has(i)  --> map.set(i, true)
+		*/
+
+    	return newval
+    }
+    console.log(removeRepet([1, 1, '1', 17, true,'','', true, false, false, 'true', 'a', {}, {}]))
+
+
+
 
 
 
