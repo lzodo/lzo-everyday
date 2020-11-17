@@ -1,4 +1,0 @@
-"是否兼容vi  nocompatible不兼容 compatible为兼容
-set nocompatible
-
-
