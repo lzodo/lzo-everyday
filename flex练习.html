@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>自适应宽度，左右两栏固定宽度，中间栏优先加载</title>
+    <style>
+    .container {
+        display: flex;
+        background: #ff0
+    }
+    .container div.c1{
+        flex:1;
+        order: 2
+    }
+    .container div.c2{
+        background: #f00;
+        width: 250px;
+        order:1;
+
+    }
+    .container div.c3{
+        
+        background: #0f0;
+        width: 250px;
+        order:3;
+    }
+    .con2{
+        display: flex;
+        width: 480px;
+        flex-flow: row wrap;
+        background: #abc;
+        height: 360px;
+        justify-content: center;
+        align-content: flex-start;
+    }
+    .con2 div{
+        background: #ff0;
+        width: 125px;
+        height: 100px;
+        margin:10px;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="c1">优先加载主内容区</div>
+        <div class="c2">左边栏</div>
+        <div class="c3">右边栏</div>
+    </div>
+    <div class="con2">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+    </div>
+</body>
+</html>
