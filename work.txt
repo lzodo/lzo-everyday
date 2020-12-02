@@ -363,14 +363,51 @@ cron定时器封装
 微信非管理员设备页面设置
 交换机IP地址设置
 
+================================================
+控制指令选择功能自动备注与解决突然出现多余分号问题
+操作配置联动控制、手动控制
+
+--------------------------
+微信故障告警平台登入
+微信故障告警平台导航首页
+
+--------------------------
+交换机添加子连接并添加id参数
+动态页面添加title
+微信审核用户添加用户
+微信详情样式修改
+
+----------------------------
+调试指令发送
+多页面防雷箱屏幕提示
+出退货增加时间
+微信外设名称位置偏移与获取数据异常弹窗
+
+=============================================
+菜单权限绑定 
 移动微信告警添加外设字段
+登录异常处理
+机构先输入机构名再去添加,添加成功后清空输入框
+
+==================================
+联动控制更新
+
+-----------------------------
+联动控制再次改版
+监控主页添加离线告警状态,高度增加
+合同出退货优化
+
+三元json解析
+
+
+360浏览器兼容测试
 优化axios请求
  
 
+
+
 三级菜单
 添加检测菜单
-
-
 =============================================||============||==============||
 /file/upload/base64
 /file/upload
@@ -379,3 +416,8 @@ eval('(function(){console.log(`ccc`)})()')
 
 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx188575182e8bc787&redirect_uri=http%3A%2F%2Fbms.huihezn.com%2Fweixin%2Fredirect%2Fwx188575182e8bc787%2Fforword&response_type=code&scope=snsapi_userinfo&state=forword&connect_redirect=1#wechat_redirect
 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx188575182e8bc787&redirect_uri=http%3A%2F%2Fbms.huihezn.com%2Fweixin%2Fredirect%2Fwx188575182e8bc787%2FshowAlarm&response_type=code&scope=snsapi_userinfo&state=showAlarm&connect_redirect=1#wechat_redirect
+
+
+
+https://github.com/coreybutler/nvm-windows/releases        nvm
+https://www.cnblogs.com/gaozejie/p/10689742.html
