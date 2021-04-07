@@ -88,19 +88,19 @@
                 $("#content").children().each(function(index, element) { //变量容器内所有直接子元素
                     var tagName=$(this).get(0).tagName; //获取标签名称
                     console.log(tagName)
-                    if(tagName.substr(0,1).toUpperCase()=="H"){ //如果标签名称第一个字符是h或H 
+                    if(tagName.substr(0,1).toUpperCase()=="H"){ //如果标签名称第一个字符是h或H
                         var contentH=$(this).html();//获取h标签里的内容
                         var markid="mark-"+tagName+"-"+index.toString(); //创建一个标志作为锚点名称
                         $(this).attr("id",markid);//为当前h标签id设置成这个标签
                         var classList = 'nav1';
-                        
+
                         if(tagName.substr(0,2).toUpperCase()=="H2"){
                             classList = 'nav1 h2nav';
                         }else if(tagName.substr(0,2).toUpperCase()=="H3"){
                             classList = 'nav1 h3nav';
                         }
-                        $(".menu").append("<a class='"+classList+"' href='#"+markid+"'>"+contentH+"</a>");//在目标DIV中添加内容,创建锚点菜单  
-                    }  
+                        $(".menu").append("<a class='"+classList+"' href='#"+markid+"'>"+contentH+"</a>");//在目标DIV中添加内容,创建锚点菜单
+                    }
                 });
             }
         })

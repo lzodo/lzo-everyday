@@ -1,193 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+    <body></body>
+    <script>
+        // function isArray(arr){
+        //     return Object.prototype.toString.call(arr) === "[object Array]"
+        // }
 
-<body>
+        const isType = (obj, type) => {
+            if (typeof obj !== "object") return false;
+            const typeString = Object.prototype.toString.call(obj);
+            let flag;
+            switch (type) {
+                case "Array":
+                    flag = typeString === "[object Array]";
+                    break;
+                case "Date":
+                    flag = typeString === "[object Date]";
+                    break;
+                case "RegExp":
+                    flag = typeString === "[object RegExp]";
+                    break;
+                default:
+                    flag = false;
+            }
+            return flag;
+        };
+        const getRegExp = (re) => {
+            var flags = "";
+            if (re.global) flags += "g";
+            if (re.ignoreCase) flags += "i";
+            if (re.multiline) flags += "m";
+            return flags;
+        };
+        function deepclone(obj, map = new WeakMap()) {
+            //Mpa 的 key 是强引用 WeakMap 是弱应用,当下一次垃圾回收机制执行时，这块内存就会被释放掉。
+            if (
+                obj == null ||
+                (typeof obj != "object" && typeof obj != "function")
+            ) {
+                return obj;
+            }
+            // var o = Array.isArray(obj)?[]:{};
+            let o;
 
-</body>
-<script>
-    // function isArray(arr){
-    //     return Object.prototype.toString.call(arr) === "[object Array]" 
-    // }
-    
-    const isType = (obj, type) => {
-        if (typeof obj !== 'object') return false;
-        const typeString = Object.prototype.toString.call(obj);
-        let flag;
-        switch (type) {
-            case 'Array':
-                flag = typeString === '[object Array]';
-                break;
-            case 'Date':
-                flag = typeString === '[object Date]';
-                break;
-            case 'RegExp':
-                flag = typeString === '[object RegExp]';
-                break;
-            default:
-                flag = false;
-        }
-        return flag;
-    };
-    const getRegExp = re => {
-        var flags = '';
-        if (re.global) flags += 'g';
-        if (re.ignoreCase) flags += 'i';
-        if (re.multiline) flags += 'm';
-        return flags;
-    };
-    function deepclone(obj,map = new WeakMap()){ //Mpa 的 key 是强引用 WeakMap 是弱应用,当下一次垃圾回收机制执行时，这块内存就会被释放掉。
-        if(obj==null || typeof obj != 'object' && typeof obj != 'function'){
-            return obj;
-        }
-        // var o = Array.isArray(obj)?[]:{};
-        let o;
+            if (isType(obj, "Array")) {
+                o = [];
+            } else if (isType(obj, "RegExp")) {
+                // 对正则对象做特殊处理
+                o = new RegExp(obj.source, getRegExp(obj)); //source属性可以返回匹配模式字符串(不包括gim和定界符)
+            } else if (isType(obj, "Date")) {
+                o = new Date(obj.getTime());
+            } else {
+                o = {};
+            }
 
-        if(isType(obj,'Array')){
-            o = [];
-        }else if(isType(obj,'RegExp')){
-            // 对正则对象做特殊处理
-            o = new RegExp(obj.source, getRegExp(obj)); //source属性可以返回匹配模式字符串(不包括gim和定界符)
-        }else if(isType(obj,'Date')){
-            o = new Date(obj.getTime())
-        }else{
-            o = {};
-        }
-
-        /*
+            /*
         处理循环引用
         检查map中有无克隆过的对象
         有 - 直接返回
         没有 - 将当前对象作为key，克隆对象作为value进行存储
         继续克隆
         */
-        if (map.get(obj)) {
-            return map.get(obj);
-        }
-        map.set(obj, o);
-
-        for(i in obj){
-            if(obj.hasOwnProperty(i)){ //判断i是不是自身(非原型链的)
-                o[i] = typeof obj[i] == 'object'?deepclone(obj[i],map):obj[i]
+            if (map.get(obj)) {
+                return map.get(obj);
             }
+            map.set(obj, o);
+
+            for (i in obj) {
+                if (obj.hasOwnProperty(i)) {
+                    //判断i是不是自身(非原型链的)
+                    o[i] =
+                        typeof obj[i] == "object"
+                            ? deepclone(obj[i], map)
+                            : obj[i];
+                }
+            }
+            return o;
         }
-        return o;
-    }
-    
-    var  oldobj = {
-        a:1,
-        b:2,
-        c:[3,4,5],
-        d:function(){},
-        e:new Array(1).fill('1'),
-        f:new RegExp('ab+c', 'i'), //xx
-        g:null,
-        i:new Date(50)
-    } 
-    oldobj.h = oldobj;
-    var newobj = deepclone(oldobj);
-    newobj.e[0] = 13;
-    console.log(oldobj);
-    console.log(newobj);
-    console.log(newobj.e == oldobj.e);
-    
 
-    // const deepclone = parent => {
-    //     // 维护两个储存循环引用的数组
-    //     const parents = [];
-    //     const children = [];
-    //     const _clone = parent => {
-    //         if (parent === null) return null;
-    //         if (typeof parent !== 'object') return parent;
-    //         let child, proto;
-    //         if (isType(parent, 'Array')) {
-    //             // 对数组做特殊处理
-    //             child = [];
-    //         } else if (isType(parent, 'RegExp')) {
-    //             // 对正则对象做特殊处理
-    //             child = new RegExp(parent.source, getRegExp(parent));
-    //             if (parent.lastIndex) child.lastIndex = parent.lastIndex;
-    //         } else if (isType(parent, 'Date')) {
-    //             // 对Date对象做特殊处理
-    //             child = new Date(parent.getTime());
-    //         } else {
-    //             // 处理对象原型
-    //             proto = Object.getPrototypeOf(parent);
-    //             // 利用Object.create切断原型链
-    //             child = Object.create(proto);
-    //         }
-    //         // 处理循环引用
-    //         const index = parents.indexOf(parent);
+        var oldobj = {
+            a: 1,
+            b: 2,
+            c: [3, 4, 5],
+            d: function () {},
+            e: new Array(1).fill("1"),
+            f: new RegExp("ab+c", "i"), //xx
+            g: null,
+            i: new Date(50),
+        };
+        oldobj.h = oldobj;
+        var newobj = deepclone(oldobj);
+        newobj.e[0] = 13;
+        console.log(oldobj);
+        console.log(newobj);
+        console.log(newobj.e == oldobj.e);
 
-    //         if (index != -1) {
-    //             // 如果父数组存在本对象,说明之前已经被引用过,直接返回此对象
-    //             return children[index];
-    //         }
-    //         parents.push(parent);
-    //         children.push(child);
-    //         for (let i in parent) {
-    //             // 递归
-    //             child[i] = _clone(parent[i]);
-    //         }
-    //         return child;
-    //     };
-    //     return _clone(parent);
-    // };
-    // const getRegExp = re => {
-    //     var flags = '';
-    //     if (re.global) flags += 'g';
-    //     if (re.ignoreCase) flags += 'i';
-    //     if (re.multiline) flags += 'm';
-    //     return flags;
-    // };
-    // const isType = (obj, type) => {
-    //     if (typeof obj !== 'object') return false;
-    //     const typeString = Object.prototype.toString.call(obj);
-    //     let flag;
-    //     switch (type) {
-    //         case 'Array':
-    //             flag = typeString === '[object Array]';
-    //             break;
-    //         case 'Date':
-    //             flag = typeString === '[object Date]';
-    //             break;
-    //         case 'RegExp':
-    //             flag = typeString === '[object RegExp]';
-    //             break;
-    //         default:
-    //             flag = false;
-    //     }
-    //     return flag;
-    // };
+        // const deepclone = parent => {
+        //     // 维护两个储存循环引用的数组
+        //     const parents = [];
+        //     const children = [];
+        //     const _clone = parent => {
+        //         if (parent === null) return null;
+        //         if (typeof parent !== 'object') return parent;
+        //         let child, proto;
+        //         if (isType(parent, 'Array')) {
+        //             // 对数组做特殊处理
+        //             child = [];
+        //         } else if (isType(parent, 'RegExp')) {
+        //             // 对正则对象做特殊处理
+        //             child = new RegExp(parent.source, getRegExp(parent));
+        //             if (parent.lastIndex) child.lastIndex = parent.lastIndex;
+        //         } else if (isType(parent, 'Date')) {
+        //             // 对Date对象做特殊处理
+        //             child = new Date(parent.getTime());
+        //         } else {
+        //             // 处理对象原型
+        //             proto = Object.getPrototypeOf(parent);
+        //             // 利用Object.create切断原型链
+        //             child = Object.create(proto);
+        //         }
+        //         // 处理循环引用
+        //         const index = parents.indexOf(parent);
 
+        //         if (index != -1) {
+        //             // 如果父数组存在本对象,说明之前已经被引用过,直接返回此对象
+        //             return children[index];
+        //         }
+        //         parents.push(parent);
+        //         children.push(child);
+        //         for (let i in parent) {
+        //             // 递归
+        //             child[i] = _clone(parent[i]);
+        //         }
+        //         return child;
+        //     };
+        //     return _clone(parent);
+        // };
+        // const getRegExp = re => {
+        //     var flags = '';
+        //     if (re.global) flags += 'g';
+        //     if (re.ignoreCase) flags += 'i';
+        //     if (re.multiline) flags += 'm';
+        //     return flags;
+        // };
+        // const isType = (obj, type) => {
+        //     if (typeof obj !== 'object') return false;
+        //     const typeString = Object.prototype.toString.call(obj);
+        //     let flag;
+        //     switch (type) {
+        //         case 'Array':
+        //             flag = typeString === '[object Array]';
+        //             break;
+        //         case 'Date':
+        //             flag = typeString === '[object Date]';
+        //             break;
+        //         case 'RegExp':
+        //             flag = typeString === '[object RegExp]';
+        //             break;
+        //         default:
+        //             flag = false;
+        //     }
+        //     return flag;
+        // };
 
-    // function person(pname) {
-    //     this.name = pname;
-    // }
-    // const Messi = new person('Messi');
-    // function say() {
-    //     console.log('hi');
-    // }
-    // const oldObj = {
-    //     a: say,
-    //     c: new RegExp('ab+c', 'i'),
-    //     d: Messi,
-    // };
-    // oldObj.b = oldObj;
-    // const newObj = deepclone(oldObj);
-    // console.log(newObj);
-    // console.log(newObj.a, oldObj.a); // [Function: say] [Function: say]
-    // console.log(newObj.b, oldObj.b); // { a: [Function: say], c: /ab+c/i, d: person { name: 'Messi' }, b: [Circular] } { a: [Function: say], c: /ab+c/i, d: person { name: 'Messi' }, b: [Circular] }
-    // console.log(newObj.c, oldObj.c); // /ab+c/i /ab+c/i
-    // console.log(newObj.d.constructor, oldObj.d.constructor); // [Function: person] [Function: person]
-
-
-</script>
-
+        // function person(pname) {
+        //     this.name = pname;
+        // }
+        // const Messi = new person('Messi');
+        // function say() {
+        //     console.log('hi');
+        // }
+        // const oldObj = {
+        //     a: say,
+        //     c: new RegExp('ab+c', 'i'),
+        //     d: Messi,
+        // };
+        // oldObj.b = oldObj;
+        // const newObj = deepclone(oldObj);
+        // console.log(newObj);
+        // console.log(newObj.a, oldObj.a); // [Function: say] [Function: say]
+        // console.log(newObj.b, oldObj.b); // { a: [Function: say], c: /ab+c/i, d: person { name: 'Messi' }, b: [Circular] } { a: [Function: say], c: /ab+c/i, d: person { name: 'Messi' }, b: [Circular] }
+        // console.log(newObj.c, oldObj.c); // /ab+c/i /ab+c/i
+        // console.log(newObj.d.constructor, oldObj.d.constructor); // [Function: person] [Function: person]
+    </script>
 </html>
