@@ -1,56 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stack</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Stack</title>
+    </head>
+    <body></body>
+    <script>
+        function Stack() {
+            //通过数组实现
+            this.items = [];
 
-</body>
-<script>
-    function Stack(){
-        //通过数组实现
-        this.items = [];
+            //添加一个新元素到栈顶
+            Stack.prototype.push = function (ele) {
+                this.items.push(ele);
+            };
 
-        //添加一个新元素到栈顶
-        Stack.prototype.push = function(ele){
-            this.items.push(ele);
+            //移除栈顶元素同时返回该元素
+            Stack.prototype.pop = function () {
+                return this.items.pop();
+            };
+
+            //返回栈顶元素，不做任何修改 peek
+            Stack.prototype.peek = function () {
+                return this.items[this.size() - 1];
+            };
+
+            //isEmpty 查看栈是否为空
+            Stack.prototype.isEmpty = function () {
+                return this.items.length == 0;
+            };
+
+            //size 返回栈中元素的个数
+            Stack.prototype.size = function () {
+                return this.items.length;
+            };
+
+            //toString 设置Stack格式
+            Stack.prototype.toString = function () {
+                return this.items;
+            };
         }
-
-        //移除栈顶元素同时返回该元素
-        Stack.prototype.pop = function(){
-            return this.items.pop()
-        }
-
-        //返回栈顶元素，不做任何修改 peek
-        Stack.prototype.peek = function(){
-            return this.items[this.size()-1]
-        }
-
-        //isEmpty 查看栈是否为空
-        Stack.prototype.isEmpty = function(){
-            return this.items.length == 0
-        }
-
-        //size 返回栈中元素的个数
-        Stack.prototype.size = function(){
-            return this.items.length
-        }
-
-        //toString 设置Stack格式
-        Stack.prototype.toString = function(){
-            return this.items;
-        }
-    }
-    let stack = new Stack();
-    stack.push('123');
-    stack.push('abc');
-    // console.log(stack.pop())
-    console.log(stack.peek())
-    console.log(stack.isEmpty())
-    console.log(stack.size())
-    console.log(stack.toString())
-</script>
+        let stack = new Stack();
+        stack.push("123");
+        stack.push("abc");
+        // console.log(stack.pop())
+        console.log(stack.peek());
+        console.log(stack.isEmpty());
+        console.log(stack.size());
+        console.log(stack.toString());
+    </script>
 </html>

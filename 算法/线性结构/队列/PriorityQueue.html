@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>优先级队列</title>
+    </head>
+    <body></body>
+    <script>
+        //封装优先级队列
+        function PriorityQueue() {
+            // 重新创建一个类可以理解为内部类，使用元素拥有属性
+            function QueueElement(element, priority) {
+                this.element = element;
+                this.priority = priority;
+            }
+
+            // 列队元素容器
+            this.items = [];
+
+            //实现方法插入元素
+            PriorityQueue.prototype.enqueue = function (element, priority) {
+                //创建QueueElement对象
+                let queueElement = new QueueElement(element, priority);
+
+                //判断是否有元素
+                if (this.items.length == 0) {
+                    this.items.push(queueElement);
+                } else {
+                    //默认优先级是最低的
+                    let min = true;
+                    for (var i = 0; i < this.items.length; i++) {
+                        // 如果新元素优先级高于第i个
+                        if (queueElement.priority > this.items[i].priority) {
+                            //那么就在items的位置i开始删除0个并且添加新元素
+                            this.items.splice(i, 0, queueElement);
+                            //不是最低的
+                            min = false;
+                            break;
+                        }
+                    }
+                    //如果真的是最低的
+                    if (min) {
+                        this.items.push(queueElement);
+                    }
+                }
+            };
+
+            //移除列队前面的元素 dequeue
+            PriorityQueue.prototype.dequeue = function () {
+                return this.items.shift();
+            };
+            //查看前面的元素,不移除 front
+            PriorityQueue.prototype.front = function () {
+                return this.items[0];
+            };
+            //查看列队是否为空 isEmpty
+            PriorityQueue.prototype.isEmpty = function () {
+                return this.items.length == 0;
+            };
+            //查看列队元素个数 size
+            PriorityQueue.prototype.size = function (params) {
+                return this.items.length;
+            };
+            //设置返回格式
+            PriorityQueue.prototype.toString = function () {
+                return this.items;
+            };
+        }
+
+        let pq = new PriorityQueue();
+        pq.enqueue('A',4)
+        pq.enqueue('C',2)
+        pq.enqueue('D',1)
+        pq.enqueue('B',3)
+        console.log(pq)
+
+    </script>
+</html>
