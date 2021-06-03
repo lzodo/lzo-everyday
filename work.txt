@@ -733,14 +733,128 @@ host类型添加语音绑定
 光合认证平台待测试
 
 --------------------------------------------
-综合统计图与单设备详细
 油量数据导出
 菜单功能轻度整理
 填写证书模板
 告警组添加字段防止连续告警问题:alarmcontent:内容、entries：最大个数、period：多少分钟、send：是否发送
-排班系统web端
+
+--------------------------------------
+通用banner宣传页面
+
+-----------------------
+
+告警组频率设置添加屏蔽时长
+时间post类型下载调试
+
+--------------------------
+统计表token方式导出Excel
+设备信息总览
+
+--------------------------
+控制指令管理同步到微信
+
+----------------------------
+简历linux与window共享，同时将内网服务器数据定时备份到window
+内网微信平台控制指令设置
+指令整合数据优化
+
+单设备详细总览规划
+
+===========================================
+微信综合告警添加开关备注
+查询微信控制指令操作记录信息
+历史告警导出
 
 
+===========================
+插件管理指令编码中插入参数解析
+数据月统计excel每天外设值最大最小值导出
+app添加实况数据
+
+
+
+======================
+插件管理的指令编码中添加解析参数入口
+设备类别统计添加周月选项
+安卓app扫码下载，以及过度页面
+
+
+插件管理与设备配置所有功能添加到云版 serialApi
+插件管理权限配置
+添加条件数据分析
+
+===================================
+天极告警信息统计页面
+内网版历史告警添加时间出指定时间段的记录
+云版与内网版的替换编码
+
+-----------------------------------------
+设备管理设备图片偶尔无法显示问题
+数据月统计导出排序
+设备类别流程图
+-------------------------------------------
+解析参数管理code_add、value_add、code_bat、value_bat
+
+--------------------------------
+内网版解析参数添加字段发布
+云版设备类别统计按全部、全部、月单选选择
+
+--------------------------------
+插件解析不对齐优化
+天极告警统计改版
+
+
+-----------------------------------
+天极告警升级
+配置内网版带端口服务与跨域代理
+历史告警去除input直接搜索
+添加云版历史告警时间段查询与导出
+
+
+==================================================
+云版快速切换菜单，取消未完成的请求，由于报表接口获取较慢，都添加上loading
+
+===================================
+
+排班系统配置相关
+数据包查询时间自动调整问题
+设备采集数据素材
+
+=================================================
+设备采集数据
+云内网添加结果检测
+短信告警配置添加设备名称与所属机构
+
+云版语音连续播报问题
+历史告警添加类别搜索
+表格 fixed="right" 不对齐问题
+
+================================
+排班配置功能更新
+设备号管理二维码移动鼠标选中直接所有节点方案
+
+
+设备号管理二维码扫码拖拽选择与二维码生成
+设备信号增删改差
+排班系统用户使用界面优化
+告警级别
+页面缓存在没加载完就跳转，再次进入没数据问题
+表格固定列错位问题
+
+h5 window.speechSynthesis语音合成
+
+设备报表还要改版
+系统优化
+
+
+
+
+
+
+服务器静态文件，拷贝本地解决方案
+设备控制图标升级方案
+综合预览统计图
+单设备详细总览（https://699pic.com/tupian-401719870.html）
 ======================================================================
 移动端定时option样式设置
 云版:告警表达式组根据模型查找模型信息
@@ -775,3 +889,19 @@ hh http://api.huihezn.com/securityApi/auth/login?username=liao&password=111111
 https://distrowatch.com/dwres.php?resource=popularity  排行
 https://www.deepin.org/zh/ :deepin
 https://www.ubuntukylin.com/downloads/:优麒麟
+
+
+2 4 * * * /var/window_backup/window_backup.sh /var/aliyun_databseBack/ /mnt/window/软件研发部/服务器数据备份/本地服务器/aliyun_databseBack/
+2 4 * * * /var/window_backup/window_backup.sh /var/aliyun_hhsg_databaseBackup/ /mnt/window/软件研发部/服务器数据备份/本地服务器/aliyun_hhsg_databaseBackup/
+2 4 * * * /var/window_backup/window_backup.sh /var/aliyun_mysql_databaseBackup/ /mnt/window/软件研发部/服务器数据备份/本地服务器/aliyun_mysql_databaseBackup/
+2 4 * * * /var/window_backup/window_backup.sh /var/aliyun_soft_backup/ /mnt/window/软件研发部/服务器数据备份/本地服务器/aliyun_soft_backup/
+2 4 * * * /var/window_backup/window_backup.sh /var/kp_databasebackup/ /mnt/window/软件研发部/服务器数据备份/本地服务器/kp_databasebackup/
+2 4 * * * /var/window_backup/window_backup.sh /var/localhost_databasebackup/ /mnt/window/软件研发部/服务器数据备份/本地服务器/localhost_databasebackup/
+
+//192.168.3.24/共享文件
+mount -t cifs -o username="liaozx",password="liaozx123" //192.168.3.24/共享文件 /mnt/window
+mount -t cifs -o username="Administrator",password="123456" //192.168.3.18/nmon /mnt/share
+
+
+
+[[ -s C:\Users\Administrator\AppData\Local\autojump\bin\autojump.sh ]] && source C:\Users\Administrator\AppData\Local\autojump\bin\autojump.sh
