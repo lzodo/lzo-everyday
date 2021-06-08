@@ -4,13 +4,13 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>链表结构 - 单向链表</title>
+        <title>链表结构 - 双向链表</title>
     </head>
     <body></body>
     <script>
         function LinkedList() {
             // 内部了:节点(包含数据与指向下一个节点的指针)
-            function Node(data){
+            function Node(data) {
                 this.data = data;
                 this.next = null;
             }
@@ -19,6 +19,43 @@
             this.head = null;
             // 长度
             this.length = 0;
+            // 在尾部添加新的节点 append
+            LinkedList.prototype.append = function (element) {
+                let node = new Node(element);
+                // 判断是否为第一个节点
+                if (this.length == 0) {
+                    this.head = node;
+                } else {    
+                    let current = this.head;
+                    console.log(current);
+                    while (current.next) {
+                        // 找到最后一个节点,新的node要添加到最后
+                        // 如果current.next 为 null跳出循环,此时的current就执行最后一个节点了
+                        current = current.next;
+                    }
+
+                    // 让最后一个节点next指向新节点
+                    current.next = node;
+                    this.length++;
+                }
+            };
+            // 向列表特定位置添加新的 节点 insert(position,element)
+            // 获取对应位置的元素 get(position)
+            // 返回元素在列表中的索引,如果列表中没有该元素则返回-1，indexOf(element)
+            // 修改某个位置的元素 update(position)
+            // 从列表特定位置返回一项 removeAt(position)
+            // 从列表中删除一项 remove(element)
+            // 链表不包含任何元素返回true 否则返回false isEmpty
+            // 包含元素的个数 size
+            // toString
+            LinkedList.prototype.toString = function () {
+                return this.head;
+            };
         }
+        let lkl = new LinkedList();
+        lkl.append("data1");
+        lkl.append("data2");
+        lkl.append("data3");
+        console.log(lkl);
     </script>
 </html>
