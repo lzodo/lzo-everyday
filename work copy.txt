@@ -894,7 +894,6 @@ h5 window.speechSynthesis语音合成
 优化axios请求
 
 
-
 添加检测菜单
 =============================================||============||==============||
 /file/upload/base64
@@ -938,5 +937,3 @@ mount -t cifs -o username="Administrator",password="123456" //192.168.3.18/nmon 
 
 
 [[ -s C:\Users\Administrator\AppData\Local\autojump\bin\autojump.sh ]] && source C:\Users\Administrator\AppData\Local\autojump\bin\autojump.sh
-
-svn://huihezn.com/svnrepos/huihezn/smartshow/trunk/mis_oa
