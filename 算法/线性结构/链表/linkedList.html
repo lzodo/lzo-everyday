@@ -40,25 +40,35 @@
                 this.length++;
             };
             // 向列表特定位置添加新的 节点 insert(position,element)
-            LinkedList.prototype.insert = function(pos,ele) {
+            LinkedList.prototype.insert = function (pos, element) {
+                // 边界判断
+                if (pos < 0 || pos > this.length) return false;
+
+                // 根据data创建node
                 let node = new Node(element);
-                // 判断是否为第一个节点
-                if (this.length < pos) {
-                    alert(`没有第${pos}`)
-                } else {
+
+                // 判断插入的位置是否是第一个
+                if(pos == 0){
+                    node.next = this.head; //让 node.next 指向 this.head 指向的节点
+                    this.head = node; // 再让 this.head 执行新节点
+                }else{  // 其他位置插入
+                    let index = 0;
                     let current = this.head;
-                    console.log(current);
-                    while (current.next) {
-                        // 找到最后一个节点,新的node要添加到最后
-                        // 如果current.next 为 null跳出循环,此时的current就执行最后一个节点了
+                    let previous = null; //储存指定位置前一个
+                    while(index++ < pos){
+                        previous = current;
                         current = current.next;
                     }
-
-                    // 让最后一个节点next指向新节点
-                    current.next = node;
-                    this.length++;
+                    //index 等于 pos 找到插入位置后跳出循环
+                    node.next = current; //新节点执行向后移动的节点
+                    previous.next = node; //指定位置前一个执行新节点
+                    
                 }
-            }
+
+                // 更新length
+                this.length += 1;
+                return true;
+            };
             // 获取对应位置的元素 get(position)
             // 返回元素在列表中的索引,如果列表中没有该元素则返回-1，indexOf(element)
             // 修改某个位置的元素 update(position)
@@ -68,14 +78,25 @@
             // 包含元素的个数 size
             // toString
             LinkedList.prototype.toString = function () {
-                return this.head;
+                var current = this.head;
+                var listString = "";
+
+                while (current) {
+                    listString += current.data + " ";
+                    current = current.next;
+                }
+                console.log(listString);
+                return listString;
             };
         }
         let lkl = new LinkedList();
         lkl.append("data1");
         lkl.append("data2");
         lkl.append("data3");
-        lkl.insert(1,"data4");
-        console.log(lkl);
+        lkl.insert(1,'insData');
+        console.log(lkl)
+
+
+        //自己实现get方法
     </script>
 </html>
