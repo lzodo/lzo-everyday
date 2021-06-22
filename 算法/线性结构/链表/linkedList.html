@@ -48,21 +48,21 @@
                 let node = new Node(element);
 
                 // 判断插入的位置是否是第一个
-                if(pos == 0){
+                if (pos == 0) {
                     node.next = this.head; //让 node.next 指向 this.head 指向的节点
                     this.head = node; // 再让 this.head 执行新节点
-                }else{  // 其他位置插入
+                } else {
+                    // 其他位置插入
                     let index = 0;
                     let current = this.head;
                     let previous = null; //储存指定位置前一个
-                    while(index++ < pos){
+                    while (index++ < pos) {
                         previous = current;
                         current = current.next;
                     }
                     //index 等于 pos 找到插入位置后跳出循环
                     node.next = current; //新节点执行向后移动的节点
                     previous.next = node; //指定位置前一个执行新节点
-                    
                 }
 
                 // 更新length
@@ -70,12 +70,75 @@
                 return true;
             };
             // 获取对应位置的元素 get(position)
+            LinkedList.prototype.get = function (pos) {
+                if (pos < 0 || pos >= this.length) return false;
+
+                let index = 0;
+                let current = this.head;
+
+                //当索引小于用户输入的位置,就将current.next 赋值给current
+                //当等于的时候,跳出循环，此时的current 是上一个索引的 current.next
+                while (index++ < pos) {
+                    current = current.next;
+                }
+                return current.data;
+            };
             // 返回元素在列表中的索引,如果列表中没有该元素则返回-1，indexOf(element)
+            LinkedList.prototype.indexOf = function (element) {
+                let current = this.head;
+                let index = 0;
+
+                while (index < this.length) {
+                    if (current.data == element) {
+                        return index;
+                    } else {
+                        current = current.next;
+                        index++;
+                    }
+                }
+                return -1;
+            };
             // 修改某个位置的元素 update(position)
+            LinkedList.prototype.update = function (pos, element) {
+                if (pos < 0 || pos >= this.length) return false;
+
+                let index = 0;
+                let current = this.head;
+                while (index++ < pos) {
+                    current = current.next;
+                }
+                current.data = element;
+            };
             // 从列表特定位置返回一项 removeAt(position)
+            LinkedList.prototype.removeAt = function (pos) {
+                if (pos < 0 || pos >= this.length) return false;
+
+                let index = 0;
+                let current = this.head;
+                let previous = null;
+                let delData = "";
+                while (index++ < pos) {
+                    previous = current;
+                    current = current.next;
+                }
+                delData = current.data;
+
+                if (pos == 0) {
+                    this.head = current.next;
+                } else {
+                    previous.next = current.next;
+                }
+
+                this.length--;
+                return delData;
+            };
+
             // 从列表中删除一项 remove(element)
+            LinkedList.prototype.remove = function (element) {};
             // 链表不包含任何元素返回true 否则返回false isEmpty
+            LinkedList.prototype.isEmpty = function () {};
             // 包含元素的个数 size
+            LinkedList.prototype.size = function () {};
             // toString
             LinkedList.prototype.toString = function () {
                 var current = this.head;
@@ -93,9 +156,12 @@
         lkl.append("data1");
         lkl.append("data2");
         lkl.append("data3");
-        lkl.insert(1,'insData');
-        console.log(lkl)
-
+        lkl.insert(1, "insData");
+        console.log(lkl.get(4));
+        console.log(lkl.indexOf("insData"));
+        lkl.update(2, "updatepos2");
+        console.log(lkl.removeAt(3));
+        console.log(lkl);
 
         //自己实现get方法
     </script>
