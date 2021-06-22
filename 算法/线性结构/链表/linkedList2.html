@@ -8,17 +8,36 @@
     </head>
     <body></body>
     <script>
-        function LinkedList() {
-            // 内部了:节点(包含数据与指向下一个节点的指针)
+        function DoublyLinkedList() {
+            // 内部了:节点(包含数据与指向下一个节点的指针,和指向上一个节点的指针)
             function Node(data){
                 this.data = data;
                 this.next = null;
+                this.prev = null;
             }
 
             // 必须有其实节点head
             this.head = null;
+
+            // 最后一个节点tail
+            this.tail = null;
+
             // 长度
             this.length = 0;
+
+            // 常见方法
+            // 向链表尾部添加新项 append(element)
+            // 向链表尾部添加指定位置插入新项 insert(position,element)
+            // 通过位置获取元素内容 get(position)
+            // 返回元素在列表中的索引,如果没有则返回-1 indexOf(element)
+            // 修改指定位置的元素 update(position,element)
+            // 从特定位置移除一项removeAt(position)
+            // 删除某一项 remove(element)
+            // isEmaty()
+            // size()
+            // toString()
+            // 返回正向遍历的节点字符串形式 forwardString()
+            // 返回反向遍历的节点字符串形式 backwordString()
         }
     </script>
 </html>

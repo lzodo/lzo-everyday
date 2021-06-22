@@ -8,6 +8,8 @@
     </head>
     <body></body>
     <script>
+        //单向只能前面节点执行后面节点
+        
         function LinkedList() {
             // 内部了:节点(包含数据与指向下一个节点的指针)
             function Node(data) {
@@ -108,37 +110,62 @@
                     current = current.next;
                 }
                 current.data = element;
+                return true;
             };
             // 从列表特定位置返回一项 removeAt(position)
             LinkedList.prototype.removeAt = function (pos) {
-                if (pos < 0 || pos >= this.length) return false;
+                if (pos < 0 || pos >= this.length) return null;
 
                 let index = 0;
                 let current = this.head;
                 let previous = null;
-                let delData = "";
-                while (index++ < pos) {
-                    previous = current;
-                    current = current.next;
-                }
-                delData = current.data;
 
                 if (pos == 0) {
                     this.head = current.next;
                 } else {
+                    while (index++ < pos) {
+                        previous = current;
+                        current = current.next;
+                    }
                     previous.next = current.next;
                 }
 
                 this.length--;
-                return delData;
+                return current.data;
             };
 
             // 从列表中删除一项 remove(element)
-            LinkedList.prototype.remove = function (element) {};
+            LinkedList.prototype.remove = function (element) {
+                return this.removeAt(this.indexOf(element)); //通过封装方法删除
+            }
+            // LinkedList.prototype.remove = function (element) {
+            //     let current = this.head;
+            //     let previous = null;
+
+            //     if (current.data == element) {
+            //         this.head = current.next;
+            //         this.length--;
+            //         return current.data;
+            //     } else {
+            //         while (current) {
+            //             if (current.data == element) {
+            //                 previous.next = current.next;
+            //                 this.length--;
+            //                 return current.data;
+            //             }
+            //             previous = current;
+            //             current = current.next;
+            //         }
+            //     }
+            // };
             // 链表不包含任何元素返回true 否则返回false isEmpty
-            LinkedList.prototype.isEmpty = function () {};
+            LinkedList.prototype.isEmpty = function () {
+                return this.length == 0
+            };
             // 包含元素的个数 size
-            LinkedList.prototype.size = function () {};
+            LinkedList.prototype.size = function () {
+                return this.length 
+            };
             // toString
             LinkedList.prototype.toString = function () {
                 var current = this.head;
@@ -161,6 +188,7 @@
         console.log(lkl.indexOf("insData"));
         lkl.update(2, "updatepos2");
         console.log(lkl.removeAt(3));
+        console.log(lkl.remove("data1"));
         console.log(lkl);
 
         //自己实现get方法
