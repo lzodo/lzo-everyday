@@ -4,7 +4,7 @@ alias j-d='cd ~/Desktop'
 alias j-p="cd /e/lzo-project"
 alias j-p-co="cd /e/lzo-project/COLLECT"
 
-# code 配置
+# code 配置-
 alias c-mis-o="code /e/object/SVN/trunk/mis_oa"
 alias c-mis-l="code /e/object/SVN/trunk/mis_oa_line"
 alias c-mis-w="code /e/object/SVN/trunk/weixin_mp"
@@ -27,6 +27,11 @@ alias gP='git push'
 alias gp='git pull'
 alias g-ac='git add . && git commit -m'
 alias g-p='git add . && git commit -m "auto default" && git push'
+
+# vue
+alias v-d='npm run dev'
+alias v-s='npm run serve'
+alias v-b='npm run build'
 
 # system
 alias sysshutdown='shutdown -s -t 0'
