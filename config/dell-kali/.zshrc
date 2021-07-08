@@ -115,6 +115,8 @@ alias gp='git pull'
 alias g-p='git add . && git commit -m "auto deploy" && git push'
 
 alias c-host='code /mnt/c/Windows/System32/drivers/etc/hosts'
+alias c~='code //wsl$/kali-linux/home/lzo-kali'
+
 alias oe="exit"
 alias cl1='sudo apt-get autoclean'               # 清理旧版本的软件缓存
 alias cl2='sudo apt-get clean'                      # 清理所有软件缓存
@@ -129,6 +131,16 @@ alias open='explorer.exe'
 alias apt="sudo apt"
 alias apt-get="sudo apt-get"
 
+# 软件
+basePath=/mnt/d/Scoop/apps/
+alias chrome=${basePath}"chromium/current/chrome.exe"
+alias wechat=${basePath}"wechat/nightly-20210702/WeChat.exe"
+alias wechatwork=${basePath}"wechatwork/current/WXWork.exe"
+alias wps=${basePath}"wpsoffice-cn/current/wps.exe"
+alias ftp1=${basePath}"8uftp/current/8uftp.exe"
+alias utools=${basePath}"utools/current/uTools.exe"
+alias qq=${basePath}"qq/current/Bin/QQ.exe"
+alias steam=${basePath}"steam/nightly-20210701/steam.exe"
 # ========================myadd end
 
 export NVM_DIR="$HOME/.nvm"
