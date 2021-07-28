@@ -122,6 +122,11 @@ alias cl1='sudo apt-get autoclean'               # 清理旧版本的软件缓�
 alias cl2='sudo apt-get clean'                      # 清理所有软件缓存
 alias cl3='sudo apt-get autoremove'           # 删除系统不再使用的孤立软
 
+alias cdd='cd $(find * -type d | fzf)'
+alias rand='ranger $(find * -type d | fzf)'
+alias vid='vim $(find * -type d | fzf)'
+alias vif='vim $(fzf)'
+
 alias git-bash="/mnt/d/Scoop/apps/git/current/bin/bash.exe"
 alias powershell="powershell.exe"
 alias cmd="cmd.exe"
@@ -141,6 +146,8 @@ alias ftp1=${basePath}"8uftp/current/8uftp.exe"
 alias utools=${basePath}"utools/current/uTools.exe"
 alias qq=${basePath}"qq/current/Bin/QQ.exe"
 alias steam=${basePath}"steam/nightly-20210701/steam.exe"
+
+alias typora="/mnt/d/apps/Typora/Typora.exe"
 # ========================myadd end
 
 export NVM_DIR="$HOME/.nvm"
@@ -168,3 +175,23 @@ source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #export W3MIMGDISPLAY_PATH=/usr/lib/w3m/w3mimgdisplay
 
+export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="/home/lzo-kali/.pyenv/bin:$PATH"
+#if command -v pyenv 1>/dev/null 2>&1; then
+if which pyenv > /dev/null; then
+ eval "$(pyenv init -)"
+fi
+eval "$(pyenv virtualenv-init -)"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+alias git='LANG=zh_CN.utf8 git'
+alias man='LANG=zh_CN.utf8 man'
+export LANG=zh_CN.UTF-8
+export PATH="/home/lzo-kali/.local/bin:$PATH"
+
+#界面展示这些参数在 fzf --help 中都有，按需配置即可 highlight 预览高亮可能需要安装
+export FZF_DEFAULT_OPTS="--border --preview '(highlight -O ansi {} || cat {}) 3> /dev/null | head -500'"
+# fzf查找配安装 fd-find
+export FZF_DEFAULT_COMMAND="fdfind --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f --hidden"
+# Use ~~ as the trigger sequence instead of the default **
+export FZF_COMPLETION_TRIGGER='~~'
