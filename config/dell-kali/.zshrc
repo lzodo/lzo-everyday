@@ -135,6 +135,9 @@ alias open='explorer.exe'
 # debain 类系统
 alias apt="sudo apt"
 alias apt-get="sudo apt-get"
+alias ls="colorls"
+alias help="tldr"
+alias help2="/home/lzo-kali/.nvm/versions/node/v14.17.0/bin/tldr"
 
 # 软件
 basePath=/mnt/d/Scoop/apps/
@@ -189,7 +192,15 @@ alias man='LANG=zh_CN.utf8 man'
 export LANG=zh_CN.UTF-8
 export PATH="/home/lzo-kali/.local/bin:$PATH"
 
+#=======================fzf================================
 #界面展示这些参数在 fzf --help 中都有，按需配置即可 highlight 预览高亮可能需要安装
 export FZF_DEFAULT_OPTS="--border --preview '(highlight -O ansi {} || cat {}) 3> /dev/null | head -500'"
 # fzf查找配安装 fd-find
 export FZF_DEFAULT_COMMAND="fdfind --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f --hidden"
+alias lg='lazygit'
+
+#=======================fuck================================
+# 在最后添加如下命令
+eval $(thefuck --alias)
+# You can use whatever you want as an alias, like for Mondays:
+eval $(thefuck --alias FUCK)
