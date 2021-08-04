@@ -21,5 +21,6 @@ Plug 'chiel92/vim-autoformat'
 Plug 'posva/vim-vue'
 Plug 'vim-syntastic/syntastic'
 Plug 'MaraniMatias/vue-formatter'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 " 卸载/禁用~/.vimrc里的默认插件
 " UnPlug 'chxuan/prepare-code'
