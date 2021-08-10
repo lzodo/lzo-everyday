@@ -1,10 +1,7 @@
-*{
-    padding:0;
-    margin:0;
-    margin:0;
-    color:#ccc;
-    color:#ccc;
-    display:flex;
-    display:flex;
+@import 'reset'
+
+$color ="#f00";
+body{
+    color:$color;
 }
 
