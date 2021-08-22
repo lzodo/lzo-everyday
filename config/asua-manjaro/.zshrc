@@ -128,6 +128,7 @@ alias vid='vim $(find * -type d | fzf)'
 alias vif='vim $(fzf)'
 
 alias ls="colorls"
+alias cat="bat"
 alias help="tldr"
 alias spm="sudo pacman"
 alias spmr="sudo pacman -R $(pacman -Qdtq)"
