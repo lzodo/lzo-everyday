@@ -12,3 +12,31 @@ var twoSum = function (nums, target) {
     return ind.sort((a, b) => a - b);
 };
 console.log(twoSum([2, 7, 11, 15], 22));
+
+//================================================
+
+let travelPlans = {
+    destination: 'DC',
+    monday: {
+      location: 'National Mall',
+      budget: 200,
+      host: null
+    }
+  }
+  let res = travelPlans?.tuesday?.location ?? "locahost"; // => locahost
+  let res2 = travelPlans?.host; // => undefined
+
+
+let config = {
+    db:{
+        host:"ccc"
+    }
+}
+// const host = config && config.db && config.db.host;
+// ?.可选链操作符
+// 查找config下的db下的host属性，如果那一层没有，直接返回undefined
+const host = config?.db?.host;
+
+// (?=(p)) 匹配找到 符合p子模式 前面的 那个位置
+console.log('18060849356'.replace(/(?=(\d{4})+$)/g,'-'));
+console.log('18060849356'.replace(/(?!^)(?=(\d{3})+$)/g,'-'));
