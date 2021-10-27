@@ -40,3 +40,15 @@ const host = config?.db?.host;
 // (?=(p)) 匹配找到 符合p子模式 前面的 那个位置
 console.log('18060849356'.replace(/(?=(\d{4})+$)/g,'-'));
 console.log('18060849356'.replace(/(?!^)(?=(\d{3})+$)/g,'-'));
+
+// const str = "1021-10-24gg";
+// const r1 = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/;
+// const exec = r1.exec(str);
+// console.log(exec)
+
+let str = "e=pow;d=555;22r5";
+let reg =/(?=(.*d=\d{3,};.*))(\w+=\w+;){2,}(\w{4})?$/
+
+
+console.log(reg.test(str))
+
