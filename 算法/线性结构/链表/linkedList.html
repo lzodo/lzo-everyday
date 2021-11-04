@@ -8,8 +8,8 @@
     </head>
     <body></body>
     <script>
-        //单向只能前面节点执行后面节点
-        
+        //单向只能前面节点指向后面节点
+
         function LinkedList() {
             // 内部了:节点(包含数据与指向下一个节点的指针)
             function Node(data) {
@@ -164,7 +164,7 @@
             };
             // 包含元素的个数 size
             LinkedList.prototype.size = function () {
-                return this.length 
+                return this.length
             };
             // toString
             LinkedList.prototype.toString = function () {
