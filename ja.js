@@ -217,37 +217,55 @@ var findWords = function (words) {
     let arr = [];
     for (const item of words) {
         let word = item.toLowerCase();
-        if (charts.indexOf(word[0]) >= charts.indexOf("q") && charts.indexOf(word[0]) <= charts.indexOf("p")) {
-            eachWord(word,charts.split(" ")[0])?arr.push(item):"";
-        }else if(charts.indexOf(word[0]) >= charts.indexOf("a") && charts.indexOf(word[0]) <= charts.indexOf("l")){
-            eachWord(word,charts.split(" ")[1])?arr.push(item):"";
-        }else{
-            eachWord(word,charts.split(" ")[2])?arr.push(item):"";
+        if (
+            charts.indexOf(word[0]) >= charts.indexOf("q") &&
+            charts.indexOf(word[0]) <= charts.indexOf("p")
+        ) {
+            eachWord(word, charts.split(" ")[0]) ? arr.push(item) : "";
+        } else if (
+            charts.indexOf(word[0]) >= charts.indexOf("a") &&
+            charts.indexOf(word[0]) <= charts.indexOf("l")
+        ) {
+            eachWord(word, charts.split(" ")[1]) ? arr.push(item) : "";
+        } else {
+            eachWord(word, charts.split(" ")[2]) ? arr.push(item) : "";
         }
     }
     return arr;
 };
-var eachWord = function(word,limits){
-    return word.split("").every(item=> limits.includes(item));
-}
-findWords(["Hello","Alaska","Dad","Peace"]);
+var eachWord = function (word, limits) {
+    return word.split("").every((item) => limits.includes(item));
+};
+findWords(["Hello", "Alaska", "Dad", "Peace"]);
 
 //==================
 /**
  * @param {number[]} nums
  * @return {number[]}
  */
- var singleNumber = function(nums) {
-     let gather = new Map();
-     let oneArray = [];
+var singleNumber = function (nums) {
+    let gather = new Map();
+    let oneArray = [];
     for (const item of nums) {
         //判断Map是否存在数组元素，如果存在则获取旧值并加1，不存在直接设置值为1
-        gather.has(item)?gather.set(item,gather.get(item)+1):gather.set(item,1);
+        gather.has(item)
+            ? gather.set(item, gather.get(item) + 1)
+            : gather.set(item, 1);
     }
-    gather.forEach((item,key)=>{
+    gather.forEach((item, key) => {
         //便利Map，如果元素统计值为1，则记录
-        item == 1?oneArray.push(key):"";
-    })
+        item == 1 ? oneArray.push(key) : "";
+    });
     return oneArray;
 };
-singleNumber([1,2,1,3,2,5,1,1,2]);
+singleNumber([1, 2, 1, 3, 2, 5, 1, 1, 2]);
+//====================
+/**
+ * @param {string} board
+ * @param {string} hand
+ * @return {number}
+ */
+var findMinStep = function (board, hand) {
+
+};
+console.log(findMinStep())
