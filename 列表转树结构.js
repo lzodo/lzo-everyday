@@ -49,6 +49,7 @@ const data = [
     { id: 6, name: "部门6", pid: 4 },
     { id: 7, name: "部门7", pid: 6 },
     { id: 8, name: "部门8", pid: 6 },
+    { id: 9, name: "部门9", pid: 10 },
 ];
 
 let tree = JSON.stringify(arrayToTree(data), (a,b)=>{
