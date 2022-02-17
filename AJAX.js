@@ -10,9 +10,9 @@ if (window.XMLHttpRequest) {
 xhr.open("POST", "http://192.168.3.41:8090/energyDevice/showAll", true);
 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 // 第三步：发送请求数据
-xhr.send({"selectby":null,"pageNumber":1,"pageSize":10});
+xhr.send({ "selectby": null, "pageNumber": 1, "pageSize": 10 });
 // 第四步：监听回调函数状态
-xhr.onreadystatechange = function () {
+xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
         // 收到服务器返回的应答结果
         console.log(xhr.responseText);

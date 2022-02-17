@@ -8,7 +8,7 @@
 <body>
 </body>
 <script type="text/javascript">
-	'use strict' 
+	'use strict'
 	/*
 	 * 功能:获取数组中的最大数字
 	 * 描述:sort 返回值大于0 则交换元素
@@ -30,7 +30,7 @@
 	 */
 	const averageOf = (...args) => args.reduce((a, b) => a + b, 0) / args.length;
     let average = averageOf(5, 2, 4, 7); // 4.5
-    
+
 
     /*
 	 * 功能:反转一个字符串
@@ -64,7 +64,7 @@
 
      /**
      * 功能:生成指定范围随机数
-     * 
+     *
      */
     const randomNum = (min, max) => {
       return Math.floor(min + Math.random() * (max - min));
@@ -77,7 +77,7 @@
 	 * 描述:arr.filter 返回检测通过(返回值为true)的元素
 	 */
     const removeFalseValues = arr => arr.filter(item => item);
-    let arrfil = removeFalseValues([3, 4, false, "", 5, true, undefined, NaN, ""]); // [3, 4, 5, true]
+    let arrfil = removeFalseValues([3, 4, false, "", 5, true, undefined, NaN, "", "0", 0]); // [3, 4, 5, true, "0"]
 
 
 	/*
@@ -91,7 +91,7 @@
 	 * 功能:返回时间
 	 * 描述:date.toTimeString   11:19:44 GMT+0800 (中国标准时间)
 	    	console.log(new Date(1597894083000).toLocaleString())      // 2020/8/20 上午11:26:29
-	   	    console.log(new Date().toLocaleTimeString())  
+	   	    console.log(new Date().toLocaleTimeString())
 	    	console.log(new Date(1597894083000).toLocaleDateString())  // 2020/8/20
 	 */
     const getTimeFromDate = date => date.toTimeString().slice(0, 8);
@@ -123,7 +123,6 @@
 	 */
 	const scrollToTop = () => {
 	  const t = document.documentElement.scrollTop || document.body.scrollTop; //获取滚动高度
-	  console.log(t)
 	  if (t > 0) {
 	    window.requestAnimationFrame(scrollToTop); //浏览器自动判断动画完成之后执行回调
 	    window.scrollTo(0, t - t / 8);
@@ -133,11 +132,10 @@
 
 	/*
 	 * 功能:字符串转换为单词数组
-	 * 描述:split(regexp) 只要匹配的字符都当做切割符号 
-	        + 与 filter(item => item) 作用一致
+	 * 描述:split(regexp) 只要匹配的字符都当做切割符号
 	 */
-	const toWords = (string, pattern = /[^a-zA-Z-]+/) => string.split(pattern).filter(item => item);
-    let words = toWords('I 5 5 wa5nt to be55 come a great false nan programm5er'); 
+	const toWords = (string, pattern = /[^a-zA-Z-]+/) => string.split(pattern);
+    let words = toWords('I 5 5 wa5nt to be55 come a great false nan programm5er');
 
 
 	/*
@@ -146,11 +144,13 @@
     const isValidJSON = str => {
 		if (typeof str == 'string') {
 	        try {
-	            var obj = JSON.parse(str); // JSON.parse(str) 会通过 123 "123"
+                // JSON.parse(str) 会通过 123 "123" 数组
+	            var obj = JSON.parse(str);
+                // 数组 '[object Array]'
 	            if(Object.prototype.toString.call(obj) == '[object Object]'){
-	              return true;
+	                return true;
 	            }else{
-	              return false;
+	                return false;
 	            }
 	        } catch(e) {
 	            return false;
@@ -161,8 +161,11 @@
 	let ivjson2 = isValidJSON('{"title": "javascript", "price": 14}'); // true
 	let ivjson3 = isValidJSON('{"title": "javascript", "price": 14, subtitle}'); // false
 
+
+    //--------------------------------------到这----------------------
 	/*
 	 * 功能:弧度转换成角度
+     * 角度转弧度 π/180×角度；弧度变角度 180/π×弧度。
 	 */
 	const radianToDegree = radian => (radian * 180.0) / Math.PI;
 	let degree = radianToDegree(2.3); // 131.78
@@ -237,7 +240,6 @@
     	return array;
 	}
 	let arrayre = [1,2,3,4,4,'ab','ab','cad'];
-	arrayre.filter(item => item != 'cad')
 	removeAaaryObj(arrayre,'ab')
 
 	/*
@@ -335,14 +337,14 @@
     	* 正则一
         * 数值类型会变成字符串,字符串会成四引号
         * 将数组转字符串 --> 去除左右中括号[] --> 再将字符串切割成数组
-        * 
+        *
     	*/
     	//newval = JSON.stringify(arr).replace(/\[|\]/g, '').split(',')
 
     	/*
     	* 正则二
         * 将数组转字符串 --> 去除左右中括号[] --> 再用JSON.parse还原
-        * 
+        *
     	*/
     	//newval =  JSON.parse('[' + JSON.stringify(arr).replace(/\[|\]/g, '') + ']');
 
@@ -370,7 +372,7 @@
 		}
 
 		fn(arr)
-	
+
 
 
     	return newval
@@ -390,7 +392,7 @@
     	// Filter过滤方式
     	newval = arr.filter((item, index) => {
 		    //arr.indexOf(item) 只会找到arr中第一个符合条件的下标，
-		    return arr.indexOf(item) === index; 
+		    return arr.indexOf(item) === index;
 		});
 
 		/*
@@ -410,6 +412,6 @@
 
 
 
-  
+
 </script>
 </html>
