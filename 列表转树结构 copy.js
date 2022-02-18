@@ -1,11 +1,9 @@
-const arrayToTree = (array, root, self_id, parent_id) => {
+const arrayToTree = (array) => {
     const hashMap = {};
     let result = [];
 
     array.forEach((it) => {
-        // const { id, pid } = it;
-        let id = it[self_id];
-        let pid = it[parent_id]
+        const { id, pid } = it;
 
         // 不存在时，先声明children树形
         // 这一步也有可能在下面出现
@@ -23,7 +21,7 @@ const arrayToTree = (array, root, self_id, parent_id) => {
         const treeIt = hashMap[id];
 
         // 根节点，直接push
-        if (root.includes(pid)) {
+        if (pid === 0) {
             result.push(treeIt);
         } else {
             // 也有可能当前节点的父父节点还没有加入hashMap，所以需要单独处理一下
@@ -47,36 +45,18 @@ const data = [
     { id: 1, name: "部门1", pid: 0 },
     { id: 3, name: "部门3", pid: 1 },
     { id: 4, name: "部门4", pid: 3 },
-    { id: 5, name: "部门5", pid: 1 },
+    { id: 5, name: "部门5", pid: 1},
     { id: 6, name: "部门6", pid: 4 },
     { id: 7, name: "部门7", pid: 6 },
     { id: 8, name: "部门8", pid: 6 },
     { id: 9, name: "部门9", pid: 10 },
-    { id: 11, name: "部门11"},
 ];
 
-// let tree = JSON.stringify(arrayToTree(data), (a,b)=>{
-//     if(b.name != "部门8"){ //过滤name为部门8的成员
-//         return  b
-//     }
-// }, 4); //缩进 最大10
-
-// let treelist = JSON.parse(tree).flat();
-// console.log(treelist)
-
-// 每一项如果没有父ID,或父ID不是该列表任何一项的ID就是根节点
-const getRootNode = (data,self_id,parent_id)=>{
-    let root = [];
-    data.forEach((item) => {
-        if (
-            item[parent_id] == undefined ||
-            data.filter((it) => item[parent_id] == it[self_id]).length == 0
-        ) {
-            root.push(item[parent_id]);
-        }
-    });
-    return root
-}
-
-console.log(getRootNode(data,"id","pid")); //122420
-console.log(arrayToTree(data, getRootNode(data,"id","pid"), "id", "pid"));
+let tree = JSON.stringify(arrayToTree(data), (a,b)=>{
+    if(b.name != "部门8"){ //过滤name为部门8的成员
+        return  b
+    }
+}, 4); //缩进 最大10
+// console.log(tree)
+let treelist = JSON.parse(tree).flat();
+console.log(treelist)
