@@ -34,13 +34,19 @@ let findSubstring = (s, words)=> {
                         }}`
                     );
 
-                    console.log(reg);
-                    console.log(beforeWord);
-                    console.log(visWords);
-                    console.log(reg.test(visWords));
+                    reg = new RegExp(
+                        `${beforeWord}(?=[${filterWords.join("|")}]){${
+                            wordsCount - 1
+                        }}`
+                    );
+
+                    // console.log(reg);
+                    // console.log(beforeWord);
+                    // console.log(visWords);
+                    // console.log(reg.test(visWords));
                     if (reg.test(visWords)) {
                         // 如果正向肯定预查中某个原生重复多次
-                        if(visRepeat(filterWords,visWords)){
+                        if(visRepeat(words,visWords)){
                             result.push(index);
                         }
                     }
