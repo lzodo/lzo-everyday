@@ -14,7 +14,7 @@ const consoleStr = (str) => {
 };
 
 const doFns = async () => {
-    const name = await sleep(consoleStr("前端胖头鱼"), 1000);
+    const name = await sleep(consoleStr("6666"), 1000);
     const sex = await sleep(consoleStr("boy"), 1000);
     const age = await sleep(consoleStr(100), 1000);
 
