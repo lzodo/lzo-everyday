@@ -75,21 +75,23 @@ var isValid = function(s) {
         [']', '['],
         ['}', '{']
     ]);
-    console.log(pairs)
     const stk = [];
     for (let ch of s){
-        // console.log(ch)
+        // 如果当前符号是结束括号
         if (pairs.has(ch)) {
+            // 如果当前栈一个都没有 或 栈中最后一个不是与右括号匹配的左括号
             if (!stk.length || stk[stk.length - 1] !== pairs.get(ch)) {
                 return false;
             }
+
+            // 如果匹配删除左括号
             stk.pop();
         }
-        else {
+        else { //如果不是结束括号就添加到栈中
             stk.push(ch);
         }
     };
     return !stk.length;
 };
 
-console.log(isValid("(){}[{]}"));
+console.log(isValid("(){}[{}]"));

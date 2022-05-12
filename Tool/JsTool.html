@@ -408,6 +408,18 @@
 
 
 
+    /*
+    *功能:限制input输入字节数，如果把一字节外的字符都当做两个字节的话
+    *
+    **/
+    const onlybyte = (value,byte) =>{
+        while(value.replace(/[^\x00-\xFF]/g,"**").length > byte){
+            value = value.substr(0,value.length-1);
+        }
+        return value;
+    }
+    console.log(onlybyte("123了",10))
+
 
 
 
