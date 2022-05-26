@@ -13,3 +13,5 @@ var youngest = _.chain(users)
     .head()
     .value();
 // => 'pebbles is 1'
+
+console.log(_.sum([1,2,3,4]))
