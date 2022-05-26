@@ -10,7 +10,7 @@ var findSubstringInWraproundString = function(p) {
         dp[p[i].charCodeAt() - 'a'.charCodeAt()] = Math.max(dp[p[i].charCodeAt() - 'a'.charCodeAt()], k);
     }
     return dp;
-    // return _.sum(dp);
+    return _.sum(dp);
 };
 
 console.log(findSubstringInWraproundString("abcdefghijklmnopqrstuvwxyz"))
