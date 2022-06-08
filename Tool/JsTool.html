@@ -68,6 +68,20 @@
         };
         console.log(randomColor());
 
+        // 随机颜色
+        // ~~ 去除小数
+        function randomColor() {
+            return (
+                "rgb(" +
+                ~~(Math.random() * 255) +
+                "," +
+                ~~(Math.random() * 255) +
+                "," +
+                ~~(Math.random() * 255) +
+                ")"
+            );
+        }
+
         /**
          * 功能:生成指定范围随机数
          *
