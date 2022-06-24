@@ -25,7 +25,7 @@ GFW 的工作机制可能主要包括 IP 黑名单、内容审查和 DNS 劫持�
 > hosts 相当于 本地自己手动配置的DNS,优先级高于外部DNS
 > window 位置: C:\Windows\System32\drivers\etc\hosts
 > linux 位置: /etc/hosts
-> win+R 调出运行栏: C:\windows\system32\drivers\etc 直接打开这个文件夹  
+> win+R 调出运行栏: C:\windows\system32\drivers\etc 直接打开这个文件夹
 > 解析顺序:用户浏览器缓存>hosts>DNS服务商
 
 ---
