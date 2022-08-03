@@ -1,6 +1,6 @@
 let arr = ['a','b','c','d','e','f','g','a','b'];
 console.log('======不改变原数组(如果不动遍历第三个原数组参数的话)======')
-console.log(arr.map(item => item + 'a'))  //修改数组中的元素并返回一个新数组，其中每个元素都使用指定函数进行过转换。 
+console.log(arr.map(item => item + 'a'))  //修改数组中的元素并返回一个新数组，其中每个元素都使用指定函数进行过转换。
 console.log(arr.forEach(item => item + 'a'))  //遍历数组 无return,(item,index,原数组) 代替for
 console.log(arr.filter(item => item == 'a'))  //返回一个数组，只有当指定函数返回 true 时，相应的元素才会被包含在这个数组中
 console.log(arr.reduce((fnRetrunNewVal, itema) => { return fnRetrunNewVal + itema},0)) //每一项进行累加
@@ -25,7 +25,7 @@ console.log(arr.reverse(arr)) //反转数组
 console.log('======Array方法======')
 Array.from(arr) //将伪数组(有length的)变成数组  || arr = [...str]
 Array.of('1','b','3') //将一组值转为数组
-Array.isArray(arr) //判断一个对象是否为数组 
+Array.isArray(arr) //判断一个对象是否为数组
 console.log('======遍历器========')
 arr.keys() //键
 arr.values() //值
@@ -48,6 +48,7 @@ reducearr.reduce((fnRetrunNewVal, item) => {
 		}
 		return fnRetrunNewVal
 },[])
+
 
 var numbers = [6.1, 4.2, 6.3,9.3,4.6,6,10.6,7.7,7.5,4.8];
 let flats = numbers.reduce((fnRetrunNewVal, item) => {
@@ -100,7 +101,7 @@ var wizards = [
   },[])
   console.log(hebin);
 
-    
+
   let hebin2 = wizards.reduce((fnRetrunNewVal, item) => {
 	var name = item.name.replace(" ",'');
 
