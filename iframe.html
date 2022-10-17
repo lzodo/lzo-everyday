@@ -93,11 +93,9 @@
     </body>
     <script>
         let iframe = document.getElementById("insPage2");
-        console.log(111111111111)
         iframe.onload = function() {
             // const iframeWin = iframe.contentWindow
             // iframeWin.postMessage('初始化值', '*')
-            console.log(22222222222)
 
             console.log(window.frames['iframePage2'] === iframe.contentWindow)
             // setTimeout(()=>{
@@ -109,7 +107,6 @@
 
             // data传递的参数   *写成子页面的域名或者是ip
         }
-        console.log(33333333333333)
         function ifrmLoaded(data){
             console.log('接收子页面操作'+ data)
         }
