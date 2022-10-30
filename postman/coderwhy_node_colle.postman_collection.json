@@ -1,0 +1,369 @@
+{
+	"info": {
+		"_postman_id": "19a9a43d-c48d-4f7e-8201-8a9b9f8b77a6",
+		"name": "coderwhy_node_colle",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8317367"
+	},
+	"item": [
+		{
+			"name": "用户请求接口",
+			"item": [
+				{
+					"name": "adduser",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.randomName = Math.random();"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":{{randomName}},\"passwd\":\"456\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/users/adduser",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"users",
+								"adduser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);\r",
+									"console.log(data,\"responseBody\");\r",
+									"console.log(pm.response.json()); // 也可以\r",
+									"pm.globals.set(\"token\",data.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"lzo\",\"passwd\":\"456\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/users/login",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "发表动态",
+			"item": [
+				{
+					"name": "发布",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"content\":\"黄海是一个非常抠门的人。。。\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/dynamic/publish",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"dynamic",
+								"publish"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询动态-通过id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "查询动态-分页",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pageSize\":2,\r\n    \"pageNumber\":1,\r\n    \"name\":\"黄海\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/dynamic",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"dynamic"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除动态",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base}}/dynamic/7",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"dynamic",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "测试接口",
+			"item": [
+				{
+					"name": "setCookie",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									" // 获取时间戳\r",
+									" var timestamp = new Date().getTime();\r",
+									"\r",
+									" // 将时间戳保存到全局变量中\r",
+									" pm.globals.set(\"timestamp\",timestamp);\r",
+									"\r",
+									" // 获取全局变量\r",
+									"  console.log(pm.globals,1000)\r",
+									"\r",
+									"  // CTRL + ALT + C 控制台，查看具体调用的接口地址，与这边操作的输出"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/tests/setCookie?t={{timestamp}}",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"tests",
+								"setCookie"
+							],
+							"query": [
+								{
+									"key": "t",
+									"value": "{{timestamp}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCookie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/tests/getCookie",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"tests",
+								"getCookie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setSession",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/tests/setSession",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"tests",
+								"setSession"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSession",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/tests/getSession",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"tests",
+								"getSession"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setToken",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"1234564\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/tests/setToken",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"tests",
+								"setToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "visToken",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTIzNDU2NCIsImlhdCI6MTY2Njk2ODc3Nn0.SOHya24qqVH54lJrHrakLteCeU92RKOJN_xeoCqCpTDcAUfMoIWFYGFBnNNZTXDxF1I1lAQNjVKNMxn--gHUMV6pTbN6o8mfz3MkbLTCbfaGYOvIfc6cTG-2JFnRcGChb_ucVntdTV0WrXv7wF4Nabl-Zwd4rhZDGEMuPY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base}}/tests/visToken",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"tests",
+								"visToken"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

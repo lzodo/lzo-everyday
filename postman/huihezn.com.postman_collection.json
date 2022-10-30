@@ -1,0 +1,49 @@
+{
+	"info": {
+		"_postman_id": "89f21716-02be-4773-b7cb-591e7327d3d2",
+		"name": "huihezn.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8317367"
+	},
+	"item": [
+		{
+			"name": "阈值管理",
+			"item": [
+				{
+					"name": "查询",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"selectby\":null,\"pageNumber\":1,\"pageSize\":10}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/businessApi/countvalue/show",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"businessApi",
+								"countvalue",
+								"show"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
