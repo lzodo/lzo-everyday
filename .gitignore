@@ -5,3 +5,4 @@ bower/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*id_cache.db*
