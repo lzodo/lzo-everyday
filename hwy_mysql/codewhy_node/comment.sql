@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
 	FOREIGN KEY(comment_id) REFERENCES comment(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-SELECT * FROM `comment`;
+SELECT COUNT(*) FROM `comment`;
 
 ALTER TABLE `comment` ADD `createAt` TIMESTAMP;
 ALTER TABLE `comment` ADD `updateAt` TIMESTAMP;
