@@ -19,7 +19,8 @@ SELECT * FROM `students` WHERE `norepeat` IS NULL; # 查询 norepeat 为 null �
 # 模糊查询
 SELECT * FROM `students` WHERE `name` LIKE "%8%"; # % 表示任意个任意字符，只要 name 存在 8，就可以查出来
 SELECT * FROM `students` WHERE `name` LIKE "__ao8"; # _ 表示一个任意字符
-
+SELECT * FROM `students` WHERE `name` regexp '端|a|b'; # 正则查询
+ 
 # 在列表中的，全都查
 SELECT * FROM `students` WHERE `name` IN ('liao1','liao2','liao3');
 
