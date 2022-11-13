@@ -17,6 +17,7 @@ ALTER TABLE `students2` RENAME TO `students`;
 
 # 添加新的列
 ALTER TABLE `students` ADD `updateTime` TIMESTAMP;
+ALTER TABLE `students` ADD `group` VARCHAR(20);
 
 # 修改字段名称
 ALTER TABLE `students` CHANGE `updateTime` `createTime` TIMESTAMP; 

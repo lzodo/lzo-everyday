@@ -30,7 +30,7 @@ SELECT * FROM `students` WHERE `name` LIKE "liao_" ORDER BY norepeat DESC, id AS
 # 分页查询
 SELECT * FROM students LIMIT 2 OFFSET 0; # 查询 2 条，偏移 0 ((pageSize-1)*pageNumber) 条 , 第一页，查出1-2条记录
 SELECT * FROM students LIMIT 2 OFFSET 2; # 查询 2 条，偏移 2 ((pageSize-1)*pageNumber) 条 , 第二页，查出3-4条件记录
-SELECT * FROM students LIMIT 2,2; # 也行
+SELECT * FROM students LIMIT 2,2; # （LIMIT offset,limit）也行
 
 
 # ============================================================
@@ -49,6 +49,10 @@ SELECT `group`,AVG(norepeat),COUNT(*) count FROM `students` GROUP BY `group` HAV
 
 # 通过 WHERE 过滤完再进行分组, WHERE 作用于表
 SELECT `group`,AVG(norepeat),COUNT(*) count FROM `students` WHERE id > 121 GROUP BY `group`; 
+
+-- IF语句  条件 成立 查什么，不成 查什么
+SELECT name,IF(age=0,"年龄无效",age) age FROM `students`;
+
 
 # 多表查询
 # 主表中有时候，相同类型或组， 数据是很多的，当想给类型，添加额外属性，就需要利用新表，否则，主表每个相同类型都有相同的新属性，难以维护 

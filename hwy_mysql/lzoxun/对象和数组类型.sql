@@ -10,7 +10,7 @@ SELECT brand.id,brand.name,brand.website,brand.phoneRank,
 	FROM `products` RIGHT JOIN `brand` ON products.brand_id = brand.id;
 
 
-# 合并
+# 合并 JSON_ARRAYAGG 必须GROUP BY
 SELECT brand.id,brand.name,brand.website,brand.phoneRank,
 	JSON_ARRAYAGG(JSON_OBJECT('id',products.id,'title',products.title)) products
 	FROM `products` RIGHT JOIN `brand` ON products.brand_id = brand.id
