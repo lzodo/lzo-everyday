@@ -18,6 +18,7 @@ SELECT dy.id id,content,JSON_OBJECT("id",us.id,"name",us.name) as `users` FROM `
 SELECT * FROM dynamic WHERE content LIKE '%海%';
 
 SELECT * FROM `dynamic`;
+DELETE FROM dynamic WHERE id >= 60;
 
 SELECT 
 		dy.id id,content,
