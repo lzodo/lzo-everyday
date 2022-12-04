@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .parent{
+            width: 150px;
+            height: 150px;
+            margin: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            /* perspective: 380px; 加了之后正方体就不正了*/
+            background-color: rgba(255,0,100,.2);
+            /* background-color: #f00; */
+            transform: rotateX(-33.5deg) rotateY(45deg) scaleZ(2); /*测试角度*/
+            animation: loop 5s linear infinite ;
+        }
+        .parent .mian{
+            position: absolute;
+            left:0;
+            top:0;
+            width: 150px;
+            height: 150px;
+        }
+        .parent .left{
+            background: rgba(255,0,255,.2);
+            /* transform-origin:left; */
+            transform: rotateY(90deg) translateZ(-75px);
+        }
+        .parent .right{
+            background: rgba(255,0,0,.2);
+            transform: rotateY(90deg) translateZ(75px);
+        }
+        .parent .top{
+            background: rgba(100, 255, 139, 0.2);
+            transform: rotateX(90deg) translateZ(75px);
+        }
+        .parent .bottom{
+            background: rgba(49, 26, 182, 0.2);
+            transform: rotateX(90deg) translateZ(-75px);
+        }
+        .parent .back{
+            background: rgba(160, 46, 8, 0.8);
+            transform: translateZ(-75px);
+        }
+        .parent .before{
+            background: rgba(42, 147, 4, 0.8);
+            transform: translateZ(75px);
+        }
+
+        @keyframes loop{
+            0%{
+                transform:rotateX(0deg) rotateY(0deg) scaleZ(1);
+            }
+            100%{
+                transform:rotateX(-360deg) rotateY(360deg) scaleZ(1);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="mian left"></div>
+        <div class="mian right"></div>
+        <div class="mian top"></div>
+        <div class="mian bottom"></div>
+        <div class="mian before"></div>
+        <div class="mian back"></div>
+    </div>
+</body>
+</html>
