@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-import { StrictMode } from "react"
+// import { StrictMode } from "react"
 // import App from './App_class';
 // import App from './01_类组件和函数组件/App_func'
 
@@ -13,9 +13,9 @@ import { StrictMode } from "react"
 // import App from "./09_非父子通信-Context/App"
 
 // import App from "./10_非父子通信-EventBus/App"
-import App from "./11_setState详细使用/App"
+// import App from "./11_setState详细使用/App"
 // import App from "./12_render函数的优化/App"
-// import App from "./13_数据不可变的力量/App"
+import App from "./13_数据不可变的力量/App"
 // import App from "./14_ref获取DOM和组件/03_ref获取函数组件的DOM"
 // import App from "./15_受控和非受控组件/App"
 
