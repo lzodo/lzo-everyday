@@ -14,7 +14,7 @@ export class App extends PureComponent {
     localStorage.setItem("token", "coderwhy")
 
     // this.setState({ isLogin: true })
-    this.forceUpdate()
+    this.forceUpdate() //  强制执行render函数
   }
 
   render() {
