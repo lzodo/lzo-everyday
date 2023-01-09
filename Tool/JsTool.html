@@ -70,17 +70,17 @@
 
         // 随机颜色
         // ~~ 去除小数
-        function randomColor() {
-            return (
-                "rgb(" +
-                ~~(Math.random() * 255) +
-                "," +
-                ~~(Math.random() * 255) +
-                "," +
-                ~~(Math.random() * 255) +
-                ")"
-            );
-        }
+        // function randomColor() {
+        //     return (
+        //         "rgb(" +
+        //         ~~(Math.random() * 255) +
+        //         "," +
+        //         ~~(Math.random() * 255) +
+        //         "," +
+        //         ~~(Math.random() * 255) +
+        //         ")"
+        //     );
+        // }
 
         /**
          * 功能:生成指定范围随机数
@@ -395,12 +395,13 @@
             //直接flat
             //newval = arr.flat(Infinity)
 
-            /*
+            /**
              * 正则一
              * 数值类型会变成字符串,字符串会成四引号
              * 将数组转字符串 --> 去除左右中括号[] --> 再将字符串切割成数组
              *
              */
+
             //newval = JSON.stringify(arr).replace(/\[|\]/g, '').split(',')
 
             /*
