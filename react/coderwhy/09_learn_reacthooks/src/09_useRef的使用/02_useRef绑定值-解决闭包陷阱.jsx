@@ -1,30 +1,30 @@
-import React, { memo, useRef } from 'react'
-import { useCallback } from 'react'
-import { useState } from 'react'
+import React, { memo, useRef } from "react";
+import { useCallback } from "react";
+import { useState } from "react";
 
-let obj = null
+let obj = null;
 
 const App = memo(() => {
-  const [count, setCount] = useState(0)
-  const nameRef = useRef()
-  console.log(obj === nameRef)
-  obj = nameRef
+    const [count, setCount] = useState(0);
+    const nameRef = useRef();  // 整个周期 组件不管渲染多少次，nameRef 都是同一个东西，都是第一层生成的那个
+    console.log(obj === nameRef);
+    obj = nameRef;
 
-  // 通过useRef解决闭包陷阱
-  const countRef = useRef()
-  countRef.current = count
+    // 通过useRef解决闭包陷阱
+    const countRef = useRef();
+    countRef.current = count;
 
-  const increment = useCallback(() => {
-    setCount(countRef.current + 1)
-  }, [])
+    const increment = useCallback(() => {
+        setCount(countRef.current + 1);
+    }, []);
 
-  return (
-    <div>
-      <h2>Hello World: {count}</h2>
-      <button onClick={e => setCount(count+1)}>+1</button>
-      <button onClick={increment}>+1</button>
-    </div>
-  )
-})
+    return (
+        <div>
+            <h2>Hello World: {count}</h2>
+            <button onClick={(e) => setCount(count + 1)}>+1</button>
+            <button onClick={increment}>+1</button>
+        </div>
+    );
+});
 
-export default App
+export default App;
