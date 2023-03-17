@@ -14,13 +14,13 @@
                 background-color: #2b3a42;
             }
             .parent {
-                width: 150px;
-                height: 150px;
+                width: 200px;
+                height: 200px;
                 margin: 500px 200px 0;
                 position: relative;
                 transform-style: preserve-3d;
                 /* background-color: #f00; */
-                transform: rotateX(-33.5deg) rotateY(45deg); /*测试角度*/
+                /*transform: rotateX(-33.5deg) rotateY(45deg); 测试角度*/
                 animation: loop 6s ease-in-out infinite;
                 display: flex;
                 justify-content: center;
@@ -30,8 +30,8 @@
                 position: absolute;
                 left: 0;
                 top: 0;
-                width: 150px;
-                height: 150px;
+                width: 200px;
+                height: 200px;
                 background-color: rgba(141, 214, 249, 0.5);
                 border: 1px solid white;
                 color: #fff;
@@ -94,6 +94,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                backface-visibility: hidden;
             }
             .inner .ileft {
                 transform: rotateY(90deg) translateZ(-35px);
@@ -114,33 +115,33 @@
                 transform: translateZ(-35px);
             }
 
-            @keyframes innerLoop{
+            @keyframes innerLoop {
                 0% {
-                    transform: rotateX(0deg) rotateY(0deg); 
+                    transform: rotateX(0deg) rotateY(0deg);
                 }
 
                 50%, /* 动画事件设置6秒，50%也就是3秒的结果就是500%的结果，就会有3秒悬停效果 */
                 100% {
-                    transform: rotateX(0deg) rotateY(-720deg);/*逆时针旋转360度 因为嵌套父级会顺时针转360这边要快更一倍*/
+                    transform: rotateX(0deg) rotateY(-720deg); /*逆时针旋转360度 因为嵌套父级会顺时针转360这边要快更一倍*/
                 }
             }
         </style>
     </head>
     <body>
         <div class="parent">
-            <div class="mian left">1</div>
-            <div class="mian right">2</div>
-            <div class="mian top">3</div>
-            <div class="mian bottom">4</div>
-            <div class="mian before">5</div>
-            <div class="mian back">6</div>
+            <div class="mian left">左</div>
+            <div class="mian right">右</div>
+            <div class="mian top"></div>
+            <div class="mian bottom"></div>
+            <div class="mian before"></div>
+            <div class="mian back"></div>
             <div class="inner">
-                <div class="imian ileft">1</div>
-                <div class="imian iright">2</div>
-                <div class="imian itop">3</div>
-                <div class="imian ibottom">4</div>
-                <div class="imian ibefore">5</div>
-                <div class="imian iback">6</div>
+                <div class="imian ileft"></div>
+                <div class="imian iright"></div>
+                <div class="imian itop"></div>
+                <div class="imian ibottom"></div>
+                <div class="imian ibefore"></div>
+                <div class="imian iback"></div>
             </div>
         </div>
     </body>
