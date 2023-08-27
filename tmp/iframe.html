@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        iframe
+    </body>
+    <script>
+        window.state = true;
+        window.onload = function () {
+            setTimeout(() => {
+                window.state = false;
+            }, 10000);
+        };
+        window.addEventListener(
+            "message",
+            (data) => {
+                console.log(data, "成功接收父级传入");
+
+                window.parent.postMessage("回答", "*");
+            },
+            false
+        );
+    </script>
+    <style>
+        body {
+            width: 100px;
+            height: 100px;
+            background-color: #333;
+        }
+    </style>
+</html>

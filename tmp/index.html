@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+            <button onclick="getState1()">获取状态(同源)</button>
+            <iframe
+                id="ifram"
+                src="http://192.168.203.132:8083/iframe.html"
+            ></iframe>
+        </div>
+        <div>
+            <button onclick="getState2()">获取状态（不同源）</button>
+            <iframe
+                id="ifram2"
+                src="http://192.168.203.132:8084/iframe.html"
+            ></iframe>
+        </div>
+    </body>
+    <script>
+        function getState1() {
+            let ifram = document.getElementById("ifram");
+            console.log(111);
+            console.log(ifram.contentWindow);
+            console.log(ifram.contentWindow.state);
+            ifram.contentWindow.postMessage("要发送的数据", "*");
+        }
+        function getState2() {
+            let ifram = document.getElementById("ifram2");
+            console.log(222);
+            console.log(ifram.contentWindow);
+            ifram.contentWindow.postMessage("要发送的数据2", "*");
+            console.log(ifram.contentWindow.state);
+        }
+        window.addEventListener(
+            "message",
+            (data) => {
+                console.log(data, 111);
+            },
+            false
+        );
+    </script>
+    <style>
+        #ifram {
+            width: 300px;
+            height: 200px;
+        }
+    </style>
+</html>
